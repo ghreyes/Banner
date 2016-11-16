@@ -36,7 +36,19 @@ def user():
     to decorate functions that need access control
     also notice there is http://..../[app]/appadmin/manage/auth to allow administrator to manage users
     """
-    return(dict(form=auth()))
+    """
+    # was being used for custom login
+    form = SQLFORM(db.auth_user)
+    if form.process().accepted:
+        session.flash = 'form accepted'
+        redirect(URL('index'))
+    elif form.errors:
+        response.flash = 'form has errors'
+    else:
+        response.flash = 'please fill the form'
+    return(dict(form=form))
+    """
+    return dict(form = auth())
 
 
 @cache.action()

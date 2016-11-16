@@ -17,25 +17,27 @@ def get_email():
     if auth.user: return auth.user.email
     else:         return 'No E-mail Specified'
 
-db.define_table('user',
-		Field('user_name', get_name()),
-                Field('user_email', get_email()),
-  		Field('gender', requires=IS_IN_SET(['Male', 'Female'], error_message='Please choose a category'))
-                #Field('job'), is our budget planner for students only?
+
+#the code for user may better fit in db.py under the auth_user.extra_fields function
+db.define_table('u',
+		#Field('user_name', get_name()),
+        #Field('user_email', get_email()),
+  		Field('gender', requires=IS_IN_SET(['Male', 'Female'], error_message='Please choose a category')),
+        #Field('job'), is our budget planner for students only?
 		Field('age', 'integer'),
-		Field('current balance', 'double'),
-                Field('goal'),
-                Field('income', 'double'),
-                Field('spendings', db.spendings)
-                )
+		Field('current_balance', 'double'),
+        Field('goal', 'double'),
+        Field('income', 'double'),
+        #Field('spendings', db.spendings)
+        )
 
 db.define_table('spendings',
-                Field('rent', 'double'),
+        Field('rent', 'double'),
 		Field('food', 'double'),
 		Field('utilities', 'double'),
-		Field('car(transportation)', 'double'),
-		Field('others', 'double'),
-                Field('total', 'double')
+		Field('transportation', 'double'),
+		Field('other', 'double'),
+        Field('total', 'double')
 		)
 
 
