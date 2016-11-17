@@ -33,13 +33,19 @@ var user_budget [line 38]
             </div>
         </div>
 
-        <div v-if="is_editing_bal" id="update-info">
+        <div v-if="is_editing_bal" id="update-info" v-for="person in person">
             <form action="#" v-on:submit.prevent="update_info()" class="form-horizontal" enctype="multipart/form-data" method="post">
                 <div class="form-group" id="no_table_content">
                     </br>
-                    Current Balance: ${current_balance}
+                    Current Balance: ${person.current_balance}
                     <div>
-                        <textarea class="form-control string" id="no_post_content" v-model="form_goal=person.goal" type="text"/> </textarea>
+                        Goal:
+                        <textarea class="form-control string" id="no_goal_content" v-model="goal=person.goal" type="text" placeholder="Goal"/> </textarea>
+                        <span class="help-block"></span>
+                    </div>
+                    <div>
+                        Income:
+                        <textarea class="form-control string" id="no_income_content" v-model="income=person.income" type="text" placeholder="Income"/> </textarea>
                         <span class="help-block"></span>
                     </div>
                 </div>
