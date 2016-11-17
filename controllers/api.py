@@ -15,21 +15,42 @@ def get_user_name_from_email(email):
 # for logged_in status
 def get_user_info():
     logged_in = auth.user_id is not None
+    person = []
+    user = db(db.person.user_email == auth.user.email).select().first()
+    logger.info(user)
     if logged_in:
-        person = db(db.person.user_email).select().first()
-        current_balance = person.current_balance
+        t = dict(
+            user_name=user.user_name,
+            gender=user.gender,
+            age=user.age,
+            current_balance=user.current_balance,
+            goal=user.goal,
+            income=user.income
+        )
+        person.append(t)
     else:
         person = None
-        current_balance = None
     return response.json(dict(
         logged_in=logged_in,
         person=person,
-        current_balance=current_balance
     ))
 
 @auth.requires_signature()
+# Update goal and income for now.
 def update_info():
+    p = db(db.person.user_email == auth.user.email).select().first()
+    logger.info(p)
+    p.goal = request.vars.goal
+    p.income = request.vars.income
+    p.update_record()
+    person = []
+    t = dict(
+        goal=request.vars.goal,
+        income=request.vars.income
+    )
+    person.append(t)
     return response.json(dict(
+        person=person
     ))
 
 @auth.requires_signature()
