@@ -1,0 +1,55 @@
+{{extend 'layout.html'}}
+
+{{block head}}
+<script src="{{=URL('static', 'js/vue.js')}}" xmlns="http://www.w3.org/1999/html"></script>
+<script src="{{=URL('static', 'js/default_index.js')}}" xmlns="http://www.w3.org/1999/html"></script>
+<script>
+    //Put URLs here
+    var get_user_info_url = "{{=URL('api', 'get_user_info', user_signature=True)}}";
+    var update_info_url = "{{=URL('api', 'update_info', user_signature=True)}}";
+    var get_average_info_url = "{{=URL('api', 'get_average_info', user_signature=True)}}";
+
+</script>
+{{end}}
+
+<!--
+Need vue stuff for -
+bool is_updating_info [lines 24, 27, and 33]
+funct update_info_button() [lines 24, 27, and 44]
+funct update_info() [line 34]
+var user_budget [line 38]
+-->
+
+<div class="main_content">
+    <div id="vue-div" class="display:none ">
+        <div id="buttons">
+            <div class="button_bar">
+            <button v-if="!is_editing_bal" id="test" class="btn btn-danger btn-sm" v-on:click="edit_balance_button()" v-bind:class="{'disabled': !logged_in}">
+            {{=icon_add}}Update Budget <Info></Info>
+            </button>
+            <button v-if="is_editing_bal" class="btn btn-warning btn-sm" v-on:click="edit_balance_button()">
+            {{=icon_cancel}}Cancel
+            </button>
+            </div>
+        </div>
+
+        <div v-if="is_editing_bal" id="update-info">
+            <form action="#" v-on:submit.prevent="update_info()" class="form-horizontal" enctype="multipart/form-data" method="post">
+                <div class="form-group" id="no_table_content">
+                    </br>
+                    Current Balance: ${current_balance}
+                    <div>
+                        <textarea class="form-control string" id="no_post_content" v-model="form_goal=person.goal" type="text"/> </textarea>
+                        <span class="help-block"></span>
+                    </div>
+                </div>
+                <div class="form-group" id="submit_record">
+                    <div>
+                        <input class="update-info-button" id="update_info_submit" type="submit" value="Update" v-on:click="edit_balance_button()"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
