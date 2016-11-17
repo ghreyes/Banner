@@ -19,20 +19,21 @@ var app = function () {
             self.vue.is_editing_bal = !self.vue.is_editing_bal;
     }
 
-    self.get_user_info = function(){
+    self.get_user_info = function(){ // Get current user info
         $.get(get_user_info_url, function(data) {
             self.vue.logged_in = data.logged_in;
-            self.vue.current_balance = data.current_balance;
+            self.vue.person = data.person;
         });
     }
 
-    self.update_info = function(){
-        $.post(update_info_url, function(data){
-            self.vue.current_balance = data.current_balance;
+    self.update_info = function(){  // update user info
+        $.post(update_info_url, {
+            goal: self.vue.goal,
+            income: self.vue.income
         });
     }
 
-    self.get_average_info = function(){
+    self.get_average_info = function(){ // get average user info
         $.get(get_average_info_url, function(data) {
             self.vue.logged_in = self.vue.logged_in;
         });
@@ -45,11 +46,12 @@ var app = function () {
         delimiters: ['${', '}'],
         unsafeDelimiters: ['!{', '}'],
         data:{
-            person: null,
+            person: [],
             user_name: null,
             user_email: null,
             logged_in: false,
             gender: null,
+            income: 0,
             age: 0,
             current_balance: 0,
             is_editing_bal: false,
