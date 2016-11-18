@@ -19,10 +19,10 @@ def get_email():
 
 
 #the code for user may better fit in db.py under the auth_user.extra_fields function
-db.define_table('u',
+db.define_table('person',
 		#Field('user_name', get_name()),
-        #Field('user_email', get_email()),
-  		Field('gender', requires=IS_IN_SET(['Male', 'Female'], error_message='Please choose a category')),
+        Field('user_email', default=auth.user.email if auth.user_id else None),
+        Field('gender', requires=IS_IN_SET(['Male', 'Female', 'Unspecified'], error_message='Please choose a category')),
         #Field('job'), is our budget planner for students only?
 		Field('age', 'integer'),
 		Field('current_balance', 'double'),

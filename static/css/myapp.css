@@ -1,0 +1,28 @@
+label {
+    font-size: 30px;
+    color: #333;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right:15px;
+    float:left;
+}
+input.form_stuff {
+    display: inline;
+    height: 40px;
+    width: 100px;
+    border: 1px solid #000;
+    margin-top: 10px;
+    -webkit-border-radius: 5px;
+    text-align: center;
+}
+
+.curr_bal{
+    font-size: 30px;
+    color: #333;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right:15px;
+    float:left;
+}

@@ -17,17 +17,28 @@ def get_user_info():
     logged_in = auth.user_id is not None
     person = []
     user = db(db.person.user_email == auth.user.email).select().first()
-    logger.info(user)
     if logged_in:
-        t = dict(
-            user_name=user.user_name,
-            gender=user.gender,
-            age=user.age,
-            current_balance=user.current_balance,
-            goal=user.goal,
-            income=user.income
-        )
-        person.append(t)
+        #user profile not setup yet
+        if not user:
+            p_id = db.person.insert(
+                user_email=auth.user.email,
+                gender='Unspecified',
+                age='18',
+                current_balance='0',
+                goal='0',
+                income='0'
+            )
+            person = db.person(p_id)
+        #user profile already made
+        else:
+            t = dict(
+                gender=user.gender,
+                age=user.age,
+                current_balance=user.current_balance,
+                goal=user.goal,
+                income=user.income
+            )
+            person = t
     else:
         person = None
     return response.json(dict(
