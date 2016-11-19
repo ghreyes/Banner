@@ -18,7 +18,7 @@ def get_user_info():
     person = []
     user = db(db.person.user_email == auth.user.email).select().first()
     if logged_in:
-        #user profile not setup yet
+        #user profile not setup yet, give them default values
         if not user:
             p_id = db.person.insert(
                 user_email=auth.user.email,
@@ -26,21 +26,34 @@ def get_user_info():
                 age='18',
                 current_balance='0',
                 goal='0',
-                income='0'
+                income='0',
+                rent='0',
+                food='0',
+                utilities='0',
+                transportation='0',
+                other='0',
+                total='0'
             )
             person = db.person(p_id)
         #user profile already made
         else:
-            t = dict(
+            person = dict(
                 gender=user.gender,
                 age=user.age,
                 current_balance=user.current_balance,
                 goal=user.goal,
-                income=user.income
+                income=user.income,
+                rent=user.rent,
+                food=user.food,
+                utilities=user.utilities,
+                transportation=user.transportation,
+                other=user.other,
+                total=(user.rent + user.food + user.utilities + user.transportation + user.other)
             )
-            person = t
+    #user not logged in
     else:
         person = None
+
     return response.json(dict(
         logged_in=logged_in,
         person=person,

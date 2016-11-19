@@ -18,38 +18,120 @@
     <div id="vue-div" class="display:none ">
         <div id="buttons">
             <div class="button_bar">
+            <!--editing balance info button-->
             <button v-if="!is_editing_bal" id="test" class="btn btn-danger btn-sm" v-on:click="edit_balance_button()" v-bind:class="{'disabled': !logged_in}">
-            {{=icon_add}} Update User Info
+            {{=icon_add}} Update Balance Info
             </button>
             <button v-if="is_editing_bal" class="btn btn-warning btn-sm" v-on:click="edit_balance_button()">
+            {{=icon_cancel}}Cancel
+            </button>
+
+            <!--editing costs info button-->
+            <button v-if="!is_editing_costs" id="test" class="btn btn-danger btn-sm" v-on:click="edit_costs_button()" v-bind:class="{'disabled': !logged_in}">
+            {{=icon_add}} Update User Costs
+            </button>
+            <button v-if="is_editing_costs" class="btn btn-warning btn-sm" v-on:click="edit_costs_button()">
+            {{=icon_cancel}}Cancel
+            </button>
+
+            <!--editing statistics info button-->
+            <button v-if="!is_editing_stats" id="test" class="btn btn-danger btn-sm" v-on:click="edit_stats_button()" v-bind:class="{'disabled': !logged_in}">
+            {{=icon_add}} Update User Info
+            </button>
+            <button v-if="is_editing_stats" class="btn btn-warning btn-sm" v-on:click="edit_stats_button()">
             {{=icon_cancel}}Cancel
             </button>
             </div>
         </div>
 
-        <!-- v-for might not be needed here-->
-        <div v-if="is_editing_bal" id="update-info"><!-- v-for="person in person"-->
+        <!--editing balance info button-->
+        <div v-if="is_editing_bal" id="update-info">
             <form action="#" v-on:submit.prevent="update_info()" class="form-horizontal" enctype="multipart/form-data" method="post">
                 <div class="form-group" id="no_table_content">
                     <br>
-                    <span class="curr_bal">Current Balance: ${person.current_balance}</span>
-                    <br>
-                    <br>
-                    <br>
+                    <div>
+                        <label>Current Balance:</label>
+                        <input class="form_stuff" v-model="goal=person.current_balance" type="text" placeholder="The amount of money you currently have"/> </input>
+                        <span class="help-block"></span>
+                    </div>
                     <div>
                         <label>Goal:</label>
-                        <input class="form_stuff" v-model="goal=person.goal" type="text" placeholder="Goal"/> </input>
+                        <input class="form_stuff" v-model="goal=person.goal" type="text" placeholder="The amount of money you want to have"/> </input>
                         <span class="help-block"></span>
                     </div>
                     <div>
                         <label>Income:</label>
-                        <input class="form_stuff" id="no_income_content" v-model="income=person.income" type="text" placeholder="Income"/> </input>
+                        <input class="form_stuff" v-model="income=person.income" type="text" placeholder="Monthly Income"/> </input>
                         <span class="help-block"></span>
                     </div>
                 </div>
                 <div class="form-group" id="submit_record">
                     <div>
                         <input class="update-info-button" id="update_info_submit" type="submit" value="Update" v-on:click="edit_balance_button()"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!--editing costs-->
+        <div v-if="is_editing_costs" id="update-costs">
+            <form action="#" v-on:submit.prevent="update_costs()" class="form-horizontal" enctype="multipart/form-data" method="post">
+                <div class="form-group" id="no_table_content">
+                    <br>
+                    <div>
+                        <label>Rent:</label>
+                        <input class="form_stuff" v-model="goal=person.rent" type="text" placeholder="Monthly rent cost"/> </input>
+                        <span class="help-block"></span>
+                    </div>
+                    <div>
+                        <label>Food:</label>
+                        <input class="form_stuff" v-model="goal=person.food" type="text" placeholder="The amount of money spend on food each month"/> </input>
+                        <span class="help-block"></span>
+                    </div>
+                    <div>
+                        <label>Utilities:</label>
+                        <input class="form_stuff" v-model="income=person.utilities" type="text" placeholder="Monthly utility costs"/> </input>
+                        <span class="help-block"></span>
+                    </div>
+                    <div>
+                        <label>Transportation:</label>
+                        <input class="form_stuff" v-model="income=person.transportation" type="text" placeholder="Monthly transportation costs"/> </input>
+                        <span class="help-block"></span>
+                    </div>
+                    <div>
+                        <label>Total Costs:</label>
+                        <span>{{person.total}}</span>
+                        <span class="help-block"></span>
+                    </div>
+                </div>
+                <div class="form-group" id="submit_record">
+                    <div>
+                        <input class="update-costs-button" id="update_costs_submit" type="submit" value="Update" v-on:click="edit_costs_button()"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!--editing statistics info -->
+        <div v-if="stats" id="update-stats">
+            <form action="#" v-on:submit.prevent="update_stats()" class="form-horizontal" enctype="multipart/form-data" method="post">
+                <div class="form-group" id="no_table_content">
+                    <br>
+                    <div>
+                        <label>Age:</label>
+                        <input class="form_stuff" v-model="goal=person.age" type="text" placeholder="Your age"/> </input>
+                        <span class="help-block"></span>
+                    </div>
+                    <div>
+                        <label>Goal:</label>
+                        <input class="form_stuff" v-model="goal=person.gender" type="text" placeholder="Your gender"/> </input>
+                        <span class="help-block"></span>
+                    </div>
+
+                </div>
+                <div class="form-group" id="submit_record">
+                    <div>
+                        <input class="update-stats-button" id="update_stats_submit" type="submit" value="Update" v-on:click="edit_stats_button()"/>
                     </div>
                 </div>
             </form>
