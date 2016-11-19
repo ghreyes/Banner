@@ -96,3 +96,41 @@ def get_average_info():
         avg_income=avg_income,
         avg_spend=avg_spendings
     ))
+
+def update_costs():
+    p = db(db.person.user_email == auth.user.email).select().first()
+    logger.info(p)
+    p.rent = request.vars.rent
+    p.food = request.vars.food
+    p.utilities = request.vars.utilities
+    p.transportation = request.vars.transportation
+    p.other = request.vars.other
+    p.total = p.rent + p.food + p.utilities + p.transportation + p.other
+    p.update_record()
+    person = []
+    t = dict(
+        rent = request.vars.rent,
+        food = request.vars.food,
+        utilities = request.vars.utilities,
+        transportation = request.vars.transportation,
+        other = request.vars.other,
+        total = p.rent + p.food + p.utilities + p.transportation + p.other
+    )
+    person.append(t)
+    return response.json(dict(
+        person=person
+    ))
+
+def update_balance():
+    p = db(db.person.user_email == auth.user.email).select().first()
+    logger.info(p)
+    p.current_balance = request.vars.current_balance
+    p.update_record()
+    person = []
+    t = dict(
+        current_balance=request.vars.current_balance,
+    )
+    person.append(t)
+    return response.json(dict(
+        person=person
+    ))
