@@ -114,7 +114,7 @@ def update_costs():
         utilities = request.vars.utilities,
         transportation = request.vars.transportation,
         other = request.vars.other,
-        total = p.rent + p.food + p.utilities + p.transportation + p.other
+        total = rent + food + utilities + transportation + other
     )
     person.append(t)
     return response.json(dict(
