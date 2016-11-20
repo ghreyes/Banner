@@ -15,7 +15,6 @@ def get_user_name_from_email(email):
 # for logged_in status
 def get_user_info():
     logged_in = auth.user_id is not None
-    person = []
     user = db(db.person.user_email == auth.user.email).select().first()
     if logged_in:
         #user profile not setup yet, give them default values
@@ -61,18 +60,24 @@ def get_user_info():
 
 @auth.requires_signature()
 # Update goal and income for now.
-def update_info():
+def update_stats():
     p = db(db.person.user_email == auth.user.email).select().first()
     logger.info(p)
-    p.goal = request.vars.goal
-    p.income = request.vars.income
+    p.gender = request.vars.gender
+    p.age = request.vars.age
     p.update_record()
-    person = []
-    t = dict(
-        goal=request.vars.goal,
-        income=request.vars.income
+    person = dict(
+        gender = p.gender,
+        age = p.age,
+        goal = p.goal,
+        income = p.income,
+        rent = p.rent,
+        food = p.food,
+        utilities = p.utilities,
+        transportation = p.transportation,
+        other = p.other,
+        total = p.total
     )
-    person.append(t)
     return response.json(dict(
         person=person
     ))
@@ -105,18 +110,20 @@ def update_costs():
     p.utilities = request.vars.utilities
     p.transportation = request.vars.transportation
     p.other = request.vars.other
-    p.total = p.rent + p.food + p.utilities + p.transportation + p.other
+    p.total =  (request.vars.rent + request.vars.food + request.vars.utilities + request.vars.transportation + request.vars.other)
     p.update_record()
-    person = []
-    t = dict(
-        rent = request.vars.rent,
-        food = request.vars.food,
-        utilities = request.vars.utilities,
-        transportation = request.vars.transportation,
-        other = request.vars.other,
-        total = rent + food + utilities + transportation + other
+    person = dict(
+        gender = p.gender,
+        age = p.age,
+        goal = p.goal,
+        income = p.income,
+        rent = p.rent,
+        food = p.food,
+        utilities = p.utilities,
+        transportation = p.transportation,
+        other = p.other,
+        total = p.total
     )
-    person.append(t)
     return response.json(dict(
         person=person
     ))
@@ -125,12 +132,21 @@ def update_balance():
     p = db(db.person.user_email == auth.user.email).select().first()
     logger.info(p)
     p.current_balance = request.vars.current_balance
+    p.goal = request.vars.goal
+    p.income = request.vars.income
     p.update_record()
-    person = []
-    t = dict(
-        current_balance=request.vars.current_balance,
+    person = dict(
+        gender=p.gender,
+        age=p.age,
+        goal=p.goal,
+        income=p.income,
+        rent=p.rent,
+        food=p.food,
+        utilities=p.utilities,
+        transportation=p.transportation,
+        other=p.other,
+        total=p.total
     )
-    person.append(t)
     return response.json(dict(
         person=person
     ))

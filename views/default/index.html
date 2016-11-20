@@ -7,8 +7,10 @@
 <script>
     //Put URLs here
     var get_user_info_url = "{{=URL('api', 'get_user_info', user_signature=True)}}";
-    var update_info_url = "{{=URL('api', 'update_info', user_signature=True)}}";
+    var update_stats_url = "{{=URL('api', 'update_stats', user_signature=True)}}";
     var get_average_info_url = "{{=URL('api', 'get_average_info', user_signature=True)}}";
+    var update_costs_url = "{{=URL('api', 'update_costs', user_signature=True)}}";
+    var update_balance_url = "{{=URL('api', 'update_balance', user_signature=True)}}";
 
 </script>
 {{end}}
@@ -46,12 +48,12 @@
 
         <!--editing balance info button-->
         <div v-if="is_editing_bal" id="update-info">
-            <form action="#" v-on:submit.prevent="update_info()" class="form-horizontal" enctype="multipart/form-data" method="post">
+            <form action="#" v-on:submit.prevent="update_balance()" class="form-horizontal" enctype="multipart/form-data" method="post">
                 <div class="form-group" id="no_table_content">
                     <br>
                     <div>
                         <label>Current Balance:</label>
-                        <input class="form_stuff" v-model="goal=person.current_balance" type="text" placeholder="The amount of money you currently have"/> </input>
+                        <input class="form_stuff" v-model="current_balance=person.current_balance" type="text" placeholder="The amount of money you currently have"/> </input>
                         <span class="help-block"></span>
                     </div>
                     <div>
@@ -80,27 +82,32 @@
                     <br>
                     <div>
                         <label>Rent:</label>
-                        <input class="form_stuff" v-model="goal=person.rent" type="text" placeholder="Monthly rent cost"/> </input>
+                        <input class="form_stuff" v-model="rent=person.rent" type="text" placeholder="Monthly rent cost"/> </input>
                         <span class="help-block"></span>
                     </div>
                     <div>
                         <label>Food:</label>
-                        <input class="form_stuff" v-model="goal=person.food" type="text" placeholder="The amount of money spend on food each month"/> </input>
+                        <input class="form_stuff" v-model="food=person.food" type="text" placeholder="The amount of money spend on food each month"/> </input>
                         <span class="help-block"></span>
                     </div>
                     <div>
                         <label>Utilities:</label>
-                        <input class="form_stuff" v-model="income=person.utilities" type="text" placeholder="Monthly utility costs"/> </input>
+                        <input class="form_stuff" v-model="utilities=person.utilities" type="text" placeholder="Monthly utility costs"/> </input>
                         <span class="help-block"></span>
                     </div>
                     <div>
                         <label>Transportation:</label>
-                        <input class="form_stuff" v-model="income=person.transportation" type="text" placeholder="Monthly transportation costs"/> </input>
+                        <input class="form_stuff" v-model="transportation=person.transportation" type="text" placeholder="Monthly transportation costs"/> </input>
+                        <span class="help-block"></span>
+                    </div>
+                    <div>
+                        <label>Other Costs:</label>
+                        <input class="form_stuff" v-model="other=person.other" type="text" placeholder="Miscellaneous spending"/> </input>
                         <span class="help-block"></span>
                     </div>
                     <div>
                         <label>Total Costs:</label>
-                        <span>{{person.total}}</span>
+                        <span>${person.total}</span>
                         <span class="help-block"></span>
                     </div>
                 </div>
@@ -113,18 +120,18 @@
         </div>
 
         <!--editing statistics info -->
-        <div v-if="stats" id="update-stats">
+        <div v-if="is_editing_stats" id="update-stats">
             <form action="#" v-on:submit.prevent="update_stats()" class="form-horizontal" enctype="multipart/form-data" method="post">
                 <div class="form-group" id="no_table_content">
                     <br>
                     <div>
                         <label>Age:</label>
-                        <input class="form_stuff" v-model="goal=person.age" type="text" placeholder="Your age"/> </input>
+                        <input class="form_stuff" v-model="age=person.age" type="text" placeholder="Your age"/> </input>
                         <span class="help-block"></span>
                     </div>
                     <div>
-                        <label>Goal:</label>
-                        <input class="form_stuff" v-model="goal=person.gender" type="text" placeholder="Your gender"/> </input>
+                        <label>Gender:</label>
+                        <input class="form_stuff" v-model="gender=person.gender" type="text" placeholder="Your gender"/> </input>
                         <span class="help-block"></span>
                     </div>
 
