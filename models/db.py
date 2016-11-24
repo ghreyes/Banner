@@ -65,11 +65,13 @@ plugins = PluginManager()
 
 # extra fields added to auth
 # from http://web2py.com/books/default/chapter/29/09/access-control#Authentication
+"""
 auth.settings.extra_fields['auth_user']= [
     Field('address'),
     Field('city'),
     Field('zip'),
     Field('phone')]
+"""
 
 # create all tables needed by auth if not custom tables
 auth.define_tables(username=False, signature=False)

@@ -7,6 +7,10 @@
     margin-right:15px;
     float:left;
 }*/
+*, *:after, *:before {border:0; margin:0; padding:0;}
+
+label, strong {font-weight:bold}
+
 input.form_stuff {
     display: inline;
     height: 40px;
@@ -25,4 +29,34 @@ input.form_stuff {
     margin-left: 10px;
     margin-right:15px;
     float:left;
+}
+
+.col-md-12{
+    margin-left:25%;
+}
+
+.col-sm-3{
+    font-family: Verdana, Geneva;
+}
+
+.container{
+    margin-left: 50px;
+}
+
+h2{
+    color: #2f4f4f;
+    font-family: Impact, "charcoal";
+    font-size: 44px;
+}
+
+input.btn-primary{
+    background-color: #2f4f4f;
+}
+
+button.btn-default{
+    background-color: #708090;
+}
+
+#submit_record__row{
+    float: right;
 }
