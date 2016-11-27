@@ -1,6 +1,7 @@
 def index():
     pass
 
+
 def get_user_name_from_email(email):
     """Returns a string corresponding to the user first and last names,
     given the user email."""
@@ -9,6 +10,7 @@ def get_user_name_from_email(email):
         return 'None'
     else:
         return ' '.join([u.first_name, u.last_name])
+
 
 @auth.requires_signature()
 # Get the user's info to display on home page. Info is none if not logged_in. Works like get_posts in hw3
@@ -33,10 +35,10 @@ def get_user_info():
                 other='0',
                 total='0'
             )
-            person = db.person(p_id)
-        #user profile already made
+            p = db.person(p_id)
+        # user profile already made
         else:
-            person = dict(
+            p = dict(
                 gender=user.gender,
                 age=user.age,
                 current_balance=user.current_balance,
@@ -49,14 +51,14 @@ def get_user_info():
                 other=user.other,
                 total=(user.rent + user.food + user.utilities + user.transportation + user.other)
             )
-    #user not logged in
+    # user not logged in
     else:
-        person = None
-
+        p = None
     return response.json(dict(
         logged_in=logged_in,
-        person=person,
+        person=p,
     ))
+
 
 @auth.requires_signature()
 # Update goal and income for now.
@@ -82,6 +84,7 @@ def update_stats():
         person=person
     ))
 
+
 @auth.requires_signature()
 # Gets average info for all users
 def get_average_info():
@@ -102,6 +105,7 @@ def get_average_info():
         avg_spend=avg_spendings
     ))
 
+
 def update_costs():
     p = db(db.person.user_email == auth.user.email).select().first()
     logger.info(p)
@@ -110,7 +114,7 @@ def update_costs():
     p.utilities = request.vars.utilities
     p.transportation = request.vars.transportation
     p.other = request.vars.other
-    p.total =  (request.vars.rent + request.vars.food + request.vars.utilities + request.vars.transportation + request.vars.other)
+    p.total = (request.vars.rent + request.vars.food + request.vars.utilities + request.vars.transportation + request.vars.other)
     p.update_record()
     person = dict(
         gender = p.gender,
@@ -127,6 +131,7 @@ def update_costs():
     return response.json(dict(
         person=person
     ))
+
 
 def update_balance():
     p = db(db.person.user_email == auth.user.email).select().first()

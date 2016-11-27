@@ -5,8 +5,8 @@
  /* url variables for the functions
     var get_user_info_url = "{{=URL('api', 'get_user_info', user_signature=True)}}";
     var get_average_info_url = "{{=URL('api', 'get_average_info', user_signature=True)}}";
-
 */
+var curr_person;
 
 var app = function () {
     var self = {};
@@ -25,7 +25,7 @@ var app = function () {
     self.edit_stats_button = function(){
         if (self.vue.logged_in) {
             self.vue.is_editing_stats = !self.vue.is_editing_stats;
-            self.vue.is_editing_balance = false;
+            self.vue.is_editing_bal = false;
             self.vue.is_editing_costs = false;
         }
     }
@@ -33,7 +33,7 @@ var app = function () {
     self.edit_costs_button = function(){
         if (self.vue.logged_in) {
             self.vue.is_editing_costs = !self.vue.is_editing_costs;
-            self.vue.is_editing_balance = false;
+            self.vue.is_editing_bal = false;
             self.vue.is_editing_stats = false;
         }
     }
@@ -42,6 +42,10 @@ var app = function () {
         $.get(get_user_info_url, function(data) {
             self.vue.logged_in = data.logged_in;
             self.vue.person = data.person;
+        });
+        //sets curr_person after person has been retrieved by the .get
+        $( document ).ajaxComplete(function() {
+            curr_person = self.vue.person;
         });
     }
 
@@ -95,6 +99,13 @@ var app = function () {
             is_editing_stats: false,
             is_editing_costs: false,
             goal: 0,
+            rent: 0,
+            food: 0,
+            utilities: 0,
+            transportation: 0,
+            other: 0,
+            total: 0,
+
             avg_bal: 0,
             avg_spend: 0,
             avg_income: 0
@@ -119,5 +130,5 @@ var app = function () {
 var APP = null;
 
 // This will make everything accessible from the js console;
-// for instance, self.x above would be accessible as APP.x
+// for instance, self.x above woul
 jQuery(function(){APP = app();});
