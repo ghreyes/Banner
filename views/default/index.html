@@ -14,190 +14,253 @@
 </script>
 {{end}}
 
+<div class = "outer_bounds">
+    <div class="main_content">
+        <div id="vue-div" class="display:none ">
+            <div id="buttons">
+                <div class="button_bar">
+                <!--editing balance info button-->
+                <button v-if="!is_editing_bal" id="test" class="btn btn-danger btn-sm" v-on:click="edit_balance_button()" v-bind:class="{'disabled': !logged_in}">
+                {{=icon_add}} Update Balance Info
+                </button>
+                <button v-if="is_editing_bal" class="btn btn-warning btn-sm" v-on:click="edit_balance_button()">
+                {{=icon_cancel}}Cancel
+                </button>
 
-<div class="main_content">
-    <div id="vue-div" class="display:none ">
-        <div id="buttons">
-            <div class="button_bar">
+                <!--editing costs info button-->
+                <button v-if="!is_editing_costs" id="test" class="btn btn-danger btn-sm" v-on:click="edit_costs_button()" v-bind:class="{'disabled': !logged_in}">
+                {{=icon_add}} Update User Costs
+                </button>
+                <button v-if="is_editing_costs" class="btn btn-warning btn-sm" v-on:click="edit_costs_button()">
+                {{=icon_cancel}}Cancel
+                </button>
+
+                <!--editing statistics info button-->
+                <button v-if="!is_editing_stats" id="test" class="btn btn-danger btn-sm" v-on:click="edit_stats_button()" v-bind:class="{'disabled': !logged_in}">
+                {{=icon_add}} Update User Info
+                </button>
+                <button v-if="is_editing_stats" class="btn btn-warning btn-sm" v-on:click="edit_stats_button()">
+                {{=icon_cancel}}Cancel
+                </button>
+                </div>
+            </div>
+
             <!--editing balance info button-->
-            <button v-if="!is_editing_bal" id="test" class="btn btn-danger btn-sm" v-on:click="edit_balance_button()" v-bind:class="{'disabled': !logged_in}">
-            {{=icon_add}} Update Balance Info
-            </button>
-            <button v-if="is_editing_bal" class="btn btn-warning btn-sm" v-on:click="edit_balance_button()">
-            {{=icon_cancel}}Cancel
-            </button>
+            <div v-if="is_editing_bal" id="update-info">
+                <form action="#" v-on:submit.prevent="update_balance()" class="form-horizontal" enctype="multipart/form-data" method="post">
+                    <div class="form-group" id="no_table_content">
+                        <br>
+                        <div>
+                            <label>Current Balance:</label>
+                            <input class="form_stuff" v-model="current_balance=person.current_balance" type="text" placeholder="The amount of money you currently have"/> </input>
+                            <span class="help-block"></span>
+                        </div>
+                        <div>
+                            <label>Goal:</label>
+                            <input class="form_stuff" v-model="goal=person.goal" type="text" placeholder="The amount of money you want to have"/> </input>
+                            <span class="help-block"></span>
+                        </div>
+                        <div>
+                            <label>Income:</label>
+                            <input class="form_stuff" v-model="income=person.income" type="text" placeholder="Monthly Income"/> </input>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group" id="submit_record">
+                        <div>
+                            <input class="update-info-button" id="update_info_submit" type="submit" value="Update" v-on:click="edit_balance_button()"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
-            <!--editing costs info button-->
-            <button v-if="!is_editing_costs" id="test" class="btn btn-danger btn-sm" v-on:click="edit_costs_button()" v-bind:class="{'disabled': !logged_in}">
-            {{=icon_add}} Update User Costs
-            </button>
-            <button v-if="is_editing_costs" class="btn btn-warning btn-sm" v-on:click="edit_costs_button()">
-            {{=icon_cancel}}Cancel
-            </button>
+            <!--editing costs-->
+            <div v-if="is_editing_costs" id="update-costs">
+                <form action="#" v-on:submit.prevent="update_costs()" class="form-horizontal" enctype="multipart/form-data" method="post">
+                    <div class="form-group" id="no_table_content">
+                        <br>
+                        <div>
+                            <label>Rent:</label>
+                            <input class="form_stuff" v-model="rent=person.rent" type="text" placeholder="Monthly rent cost"/> </input>
+                            <span class="help-block"></span>
+                        </div>
+                        <div>
+                            <label>Food:</label>
+                            <input class="form_stuff" v-model="food=person.food" type="text" placeholder="The amount of money spend on food each month"/> </input>
+                            <span class="help-block"></span>
+                        </div>
+                        <div>
+                            <label>Utilities:</label>
+                            <input class="form_stuff" v-model="utilities=person.utilities" type="text" placeholder="Monthly utility costs"/> </input>
+                            <span class="help-block"></span>
+                        </div>
+                        <div>
+                            <label>Transportation:</label>
+                            <input class="form_stuff" v-model="transportation=person.transportation" type="text" placeholder="Monthly transportation costs"/> </input>
+                            <span class="help-block"></span>
+                        </div>
+                        <div>
+                            <label>Other Costs:</label>
+                            <input class="form_stuff" v-model="other=person.other" type="text" placeholder="Miscellaneous spending"/> </input>
+                            <span class="help-block"></span>
+                        </div>
+                        <div>
+                            <label>Total Costs:</label>
+                            <span id="total_costs">${person.total}</span>
+                            <span class="help-block"></span>
+                        </div>
+                    </div>
+                    <div class="form-group" id="submit_record">
+                        <div>
+                            <input class="update-costs-button" id="update_costs_submit" type="submit" value="Update" v-on:click="edit_costs_button()"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
-            <!--editing statistics info button-->
-            <button v-if="!is_editing_stats" id="test" class="btn btn-danger btn-sm" v-on:click="edit_stats_button()" v-bind:class="{'disabled': !logged_in}">
-            {{=icon_add}} Update User Info
-            </button>
-            <button v-if="is_editing_stats" class="btn btn-warning btn-sm" v-on:click="edit_stats_button()">
-            {{=icon_cancel}}Cancel
-            </button>
+            <!--editing statistics info -->
+            <div v-if="is_editing_stats" id="update-stats">
+                <form action="#" v-on:submit.prevent="update_stats()" class="form-horizontal" enctype="multipart/form-data" method="post">
+                    <div class="form-group" id="no_table_content">
+                        <br>
+                        <div>
+                            <label>Age:</label>
+                            <input class="form_stuff" v-model="age=person.age" type="text" placeholder="Your age"/> </input>
+                            <span class="help-block"></span>
+                        </div>
+                        <div>
+                            <label>Gender:</label>
+                            <input class="form_stuff" v-model="gender=person.gender" type="text" placeholder="Your gender"/> </input>
+                            <span class="help-block"></span>
+                        </div>
+
+                    </div>
+                    <div class="form-group" id="submit_record">
+                        <div>
+                            <input class="update-stats-button" id="update_stats_submit" type="submit" value="Update" v-on:click="edit_stats_button()"/>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
-
-        <!--editing balance info button-->
-        <div v-if="is_editing_bal" id="update-info">
-            <form action="#" v-on:submit.prevent="update_balance()" class="form-horizontal" enctype="multipart/form-data" method="post">
-                <div class="form-group" id="no_table_content">
-                    <br>
-                    <div>
-                        <label>Current Balance:</label>
-                        <input class="form_stuff" v-model="current_balance=person.current_balance" type="text" placeholder="The amount of money you currently have"/> </input>
-                        <span class="help-block"></span>
-                    </div>
-                    <div>
-                        <label>Goal:</label>
-                        <input class="form_stuff" v-model="goal=person.goal" type="text" placeholder="The amount of money you want to have"/> </input>
-                        <span class="help-block"></span>
-                    </div>
-                    <div>
-                        <label>Income:</label>
-                        <input class="form_stuff" v-model="income=person.income" type="text" placeholder="Monthly Income"/> </input>
-                        <span class="help-block"></span>
-                    </div>
-                </div>
-                <div class="form-group" id="submit_record">
-                    <div>
-                        <input class="update-info-button" id="update_info_submit" type="submit" value="Update" v-on:click="edit_balance_button()"/>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <!--editing costs-->
-        <div v-if="is_editing_costs" id="update-costs">
-            <form action="#" v-on:submit.prevent="update_costs()" class="form-horizontal" enctype="multipart/form-data" method="post">
-                <div class="form-group" id="no_table_content">
-                    <br>
-                    <div>
-                        <label>Rent:</label>
-                        <input class="form_stuff" v-model="rent=person.rent" type="text" placeholder="Monthly rent cost"/> </input>
-                        <span class="help-block"></span>
-                    </div>
-                    <div>
-                        <label>Food:</label>
-                        <input class="form_stuff" v-model="food=person.food" type="text" placeholder="The amount of money spend on food each month"/> </input>
-                        <span class="help-block"></span>
-                    </div>
-                    <div>
-                        <label>Utilities:</label>
-                        <input class="form_stuff" v-model="utilities=person.utilities" type="text" placeholder="Monthly utility costs"/> </input>
-                        <span class="help-block"></span>
-                    </div>
-                    <div>
-                        <label>Transportation:</label>
-                        <input class="form_stuff" v-model="transportation=person.transportation" type="text" placeholder="Monthly transportation costs"/> </input>
-                        <span class="help-block"></span>
-                    </div>
-                    <div>
-                        <label>Other Costs:</label>
-                        <input class="form_stuff" v-model="other=person.other" type="text" placeholder="Miscellaneous spending"/> </input>
-                        <span class="help-block"></span>
-                    </div>
-                    <div>
-                        <label>Total Costs:</label>
-                        <span id="total_costs">${person.total}</span>
-                        <span class="help-block"></span>
-                    </div>
-                </div>
-                <div class="form-group" id="submit_record">
-                    <div>
-                        <input class="update-costs-button" id="update_costs_submit" type="submit" value="Update" v-on:click="edit_costs_button()"/>
-                    </div>
-                </div>
-            </form>
-        </div>
-
-        <!--editing statistics info -->
-        <div v-if="is_editing_stats" id="update-stats">
-            <form action="#" v-on:submit.prevent="update_stats()" class="form-horizontal" enctype="multipart/form-data" method="post">
-                <div class="form-group" id="no_table_content">
-                    <br>
-                    <div>
-                        <label>Age:</label>
-                        <input class="form_stuff" v-model="age=person.age" type="text" placeholder="Your age"/> </input>
-                        <span class="help-block"></span>
-                    </div>
-                    <div>
-                        <label>Gender:</label>
-                        <input class="form_stuff" v-model="gender=person.gender" type="text" placeholder="Your gender"/> </input>
-                        <span class="help-block"></span>
-                    </div>
-
-                </div>
-                <div class="form-group" id="submit_record">
-                    <div>
-                        <input class="update-stats-button" id="update_stats_submit" type="submit" value="Update" v-on:click="edit_stats_button()"/>
-                    </div>
-                </div>
-            </form>
-        </div>
     </div>
+</div>
 
-    <canvas id="costChart" width="500" height="500"></canvas>
-    <script>
-    //allows chart to be built AFTER page load so data is updated
-    window.onload = function() {
-        //build chart AFTER ajax .get function is done
-        $( document ).ajaxComplete(function() {
+<div class="chartsDiv">
+    <div class="costChartDiv">
+        <canvas id="costChart" width="500" height="500" style="display:inline"></canvas>
+    </div>
+    <div class="balChartDiv">
+        <canvas id="balChart" width="500" height="500" style="display:inline"></canvas>
+    </div>
+</div>
 
-            var ctx = document.getElementById("costChart");
+<script>
+//allows chart to be built AFTER page load so data is updated
+window.onload = function() {
+    //build chart AFTER ajax .get function is done
+    $( document ).ajaxComplete(function() {
+        var ctx = document.getElementById("costChart");
+        var ctx2 = document.getElementById("balChart");
 
-            var rent = curr_person.rent;
-            var food = curr_person.food;
-            var util = curr_person.utilities;
-            var trans = curr_person.transportation;
-            var other = curr_person.other;
-            var total = curr_person.total;
+        var rent = curr_person.rent;
+        var food = curr_person.food;
+        var util = curr_person.utilities;
+        var trans = curr_person.transportation;
+        var other = curr_person.other;
 
-            var myChart = new Chart(ctx, {
-                type: 'pie',
-                data: {
-                    labels: ["Rent", "Food", "Utilities", "Transportation", "Other"],
-                    datasets: [{
-                        label: '# of Votes',
-                        data: [rent, food, util, trans, other],
-                        backgroundColor: [
-                            'rgba(255, 99, 132, 0.2)',
-                            'rgba(54, 162, 235, 0.2)',
-                            'rgba(255, 206, 86, 0.2)',
-                            'rgba(75, 192, 192, 0.2)',
-                            'rgba(153, 102, 255, 0.2)',
-                            'rgba(255, 159, 64, 0.2)'
-                        ],
-                        borderColor: [
-                            'rgba(255,99,132,1)',
-                            'rgba(54, 162, 235, 1)',
-                            'rgba(255, 206, 86, 1)',
-                            'rgba(75, 192, 192, 1)',
-                            'rgba(153, 102, 255, 1)',
-                            'rgba(255, 159, 64, 1)'
-                        ],
-                        borderWidth: 1
+        var cChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ["Rent", "Food", "Utilities", "Transportation", "Other"],
+                datasets: [{
+                    data: [rent, food, util, trans, other],
+                    backgroundColor: [
+                        'rgb(255, 128, 0)',
+                        'rgb(255, 50, 50)',
+                        'rgb(255, 255, 50)',
+                        'rgb(75, 192, 192)',
+                        'rgb(102, 0, 204)'
+                    ],
+                    borderColor: [
+                        'rgb(0,0,0)',
+                        'rgb(0,0,0)',
+                        'rgb(0,0,0)',
+                        'rgb(0,0,0)',
+                        'rgb(0,0,0)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        display: false
                     }]
                 },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            display: false
-                        }]
-                    },
-                    responsive: false,
-                    maintainAspectRatio: false
-                }
-            });
+                responsive: false,
+                maintainAspectRatio: false
+            }
         });
-    }
-    </script>
-    
-</div>
+
+        var total = curr_person.total;
+        var bal = curr_person.current_balance;
+        var income = curr_person.income;
+        var goal = curr_person.goal - (bal + income);
+        var net = income - total;
+
+        var incomeColor;
+        var balColor;
+
+        //set income to red if deficit and blue otherwise
+        if(net < 0){
+            incomeColor = 'rgb(255,0,0)';
+            bal = bal + net;
+        }
+        else{
+            goal = curr_person.goal - (bal+net);
+            incomeColor = 'rgb(20,20,255)';
+        }
+
+        //set balance to blue if deficit and green otherwise
+        if(net < 0){
+            balColor = 'rgb(20,20,255)';
+        }
+        else{
+            balColor = 'rgb(0, 150, 0)';
+        }
+
+        var bChart = new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: ["Balance", "Net Income", "Amount until Goal"],
+                datasets: [{
+                    data: [bal, Math.abs(net), goal],
+                    backgroundColor: [
+                        balColor,
+                        incomeColor,
+                        'rgb(255, 220, 20)'
+                    ],
+                    borderColor: [
+                        'rgb(0,0,0)',
+                        'rgb(0,0,0)',
+                        'rgb(0,0,0)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        display: false
+                    }]
+                },
+                responsive: false,
+                maintainAspectRatio: false
+            }
+        });
+        cChart.update();
+        bChart.update();
+    });
+}
+</script>

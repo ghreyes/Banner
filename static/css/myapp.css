@@ -31,7 +31,7 @@ input.form_stuff {
     float:left;
 }
 
-.col-md-12{
+.outer_bounds{
     margin-left:25%;
 }
 
@@ -58,5 +58,27 @@ button.btn-default{
 }
 
 #submit_record__row{
+    float: right;
+}
+
+#costChart{
+    display: inline;
+}
+
+#balChart{
+    display:inline;
+}
+
+.chartsDiv{
+    padding-top:20px;
+}
+
+.costChartDiv{
+    padding-left: 15%;
+    float:left;
+}
+
+.balChartDiv{
+    padding-right: 15%;
     float: right;
 }
