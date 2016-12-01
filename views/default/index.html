@@ -49,7 +49,7 @@
 
             <!--editing balance info button-->
             <div v-if="is_editing_bal" id="update-info">
-                <form action="#" v-on:submit.prevent="update_balance()" class="form-horizontal" enctype="multipart/form-data" method="post">
+                <form action="#" v-on:submit.prevent="update_balance(), get_user_info()" class="form-horizontal" enctype="multipart/form-data" method="post">
                     <div class="form-group" id="no_table_content">
                         <br>
                         <div>
@@ -78,7 +78,7 @@
 
             <!--editing costs-->
             <div v-if="is_editing_costs" id="update-costs">
-                <form action="#" v-on:submit.prevent="update_costs()" class="form-horizontal" enctype="multipart/form-data" method="post">
+                <form action="#" v-on:submit.prevent="update_costs(), get_user_info()" class="form-horizontal" enctype="multipart/form-data" method="post">
                     <div class="form-group" id="no_table_content">
                         <br>
                         <div>
@@ -122,7 +122,7 @@
 
             <!--editing statistics info -->
             <div v-if="is_editing_stats" id="update-stats">
-                <form action="#" v-on:submit.prevent="update_stats()" class="form-horizontal" enctype="multipart/form-data" method="post">
+                <form action="#" v-on:submit.prevent="update_stats(), get_user_info()" class="form-horizontal" enctype="multipart/form-data" method="post">
                     <div class="form-group" id="no_table_content">
                         <br>
                         <div>
@@ -148,18 +148,16 @@
     </div>
 </div>
 
-<div class="chartsDiv">
-    <div class="costChartDiv">
+<div class="charstDiv" id="chartsDiv">
+    <div class="costChartDiv" id="costChartDiv">
         <canvas id="costChart" width="500" height="500" style="display:inline"></canvas>
     </div>
-    <div class="balChartDiv">
+    <div class="balChartDiv" id="balChartDiv">
         <canvas id="balChart" width="500" height="500" style="display:inline"></canvas>
     </div>
-    <div class="avgChartDiv">
-        <canvas id="avgChart" width="500" height="300" style="..."></canvas>
+    <div class="avgChartDiv" id="avgChartDiv">
+        <canvas id="avgChart" width="500" height="300" style="display:inline"></canvas>
     </div>
-</div>
-
 </div>
 
 
@@ -168,9 +166,18 @@
 window.onload = function() {
     //build chart AFTER ajax .get function is done
     $( document ).ajaxComplete(function() {
-        var ctx = document.getElementById("costChart");
-        var ctx2 = document.getElementById("balChart");
-        var ctx3 = document.getElementById("avgChart");
+
+        // Allows the charts to be properly updated by 'deleting' canvas elements, then re-adding them
+        var chartsDiv = document.getElementById("chartsDiv");
+        chartsDiv.innerHTML = '';
+        $('#chartsDiv').append('<canvas id="costChart" width="500" height="500" style="display:inline"></canvas>');
+        $('#chartsDiv').append('<canvas id="balChart" width="500" height="500" style="display:inline"></canvas>');
+        $('#chartsDiv').append('<canvas id="avgChart" width="500" height="500" style="display:inline"></canvas>');
+
+        var ctx = $('#costChart').get(0).getContext("2d");
+        var ctx2 = $('#balChart').get(0).getContext("2d");
+        var ctx3 = $('#avgChart').get(0).getContext("2d");
+
 
         var rent = curr_person.rent;
         var food = curr_person.food;
@@ -306,9 +313,6 @@ window.onload = function() {
           }
         });
 
-        cChart.update();
-        bChart.update();
-        aChart.update();
     });
 }
 </script>
