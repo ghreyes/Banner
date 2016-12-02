@@ -1,4 +1,4 @@
-{{extend 'layout.html'}}
+{{extend 'home_page.html'}}
 
 {{block head}}
 <script src="{{=URL('static', 'js/vue.js')}}" xmlns="http://www.w3.org/1999/html"></script>
@@ -25,23 +25,23 @@
                 <button v-if="!is_editing_bal && logged_in" id="test" class="btn btn-custom btn-sm" v-on:click="edit_balance_button()" v-bind:class="{'disabled': !logged_in}">
                 {{=icon_add}} Update Balance Info
                 </button>
-                <button v-if="is_editing_bal" class="btn btn-danger btn-sm" v-on:click="edit_balance_button()">
+                <button v-if="is_editing_bal && logged_in" class="btn btn-danger btn-sm" v-on:click="edit_balance_button()">
                 {{=icon_cancel}}Cancel
                 </button>
 
                 <!--editing costs info button-->
-                <button v-if="!is_editing_costs" id="test" class="btn btn-custom btn-sm" v-on:click="edit_costs_button()" v-bind:class="{'disabled': !logged_in}">
+                <button v-if="!is_editing_costs && logged_in" id="test" class="btn btn-custom btn-sm" v-on:click="edit_costs_button()" v-bind:class="{'disabled': !logged_in}">
                 {{=icon_add}} Update User Costs
                 </button>
-                <button v-if="is_editing_costs" class="btn btn-danger btn-sm" v-on:click="edit_costs_button()">
+                <button v-if="is_editing_costs && logged_in" class="btn btn-danger btn-sm" v-on:click="edit_costs_button()">
                 {{=icon_cancel}}Cancel
                 </button>
 
                 <!--editing statistics info button-->
-                <button v-if="!is_editing_stats" id="test" class="btn btn-custom btn-sm" v-on:click="edit_stats_button()" v-bind:class="{'disabled': !logged_in}">
+                <button v-if="!is_editing_stats && logged_in" id="test" class="btn btn-custom btn-sm" v-on:click="edit_stats_button()" v-bind:class="{'disabled': !logged_in}">
                 {{=icon_add}} Update User Info
                 </button>
-                <button v-if="is_editing_stats" class="btn btn-danger btn-sm" v-on:click="edit_stats_button()">
+                <button v-if="is_editing_stats && logged_in" class="btn btn-danger btn-sm" v-on:click="edit_stats_button()">
                 {{=icon_cancel}}Cancel
                 </button>
                 </div>

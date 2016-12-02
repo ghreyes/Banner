@@ -5,9 +5,8 @@
 # Customize your APP title, subtitle and menus here
 # ----------------------------------------------------------------------------------------------------------------------
 
-response.logo = A(B('web', SPAN(2), 'py'), XML('&trade;&nbsp;'),
-                  _class="navbar-brand", _href="http://www.web2py.com/",
-                  _id="web2py-logo")
+response.logo = A(B(SPAN('Banner')), XML('&trade;&nbsp;'),
+                  _class="navbar-brand", _href="http://127.0.0.1:8000/Banner")
 response.title = request.application.replace('_', ' ').title()
 response.subtitle = ''
 
