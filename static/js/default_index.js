@@ -7,6 +7,7 @@
     var get_average_info_url = "{{=URL('api', 'get_average_info', user_signature=True)}}";
 */
 var curr_person;
+var logg_in;
 
 var app = function () {
     var self = {};

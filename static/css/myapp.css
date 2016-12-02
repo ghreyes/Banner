@@ -13,12 +13,13 @@ label, strong {font-weight:bold}
 
 input.form_stuff {
     display: inline;
+    float:right;
     height: 40px;
     width: 100px;
-    border: 1px solid #000;
-    margin-top: 10px;
+    border: 3px solid #000;
     -webkit-border-radius: 5px;
     text-align: center;
+    margin-right: 20px;
 }
 
 .curr_bal{
@@ -81,4 +82,52 @@ button.btn-default{
 .balChartDiv{
     padding-right: 15%;
     float: right;
+}
+
+.form-row{
+    height: 70px;
+    width: 25%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #708090;
+    -webkit-border-radius: 5px;
+    position: relative;
+}
+
+#form-label{
+    margin-left:20px;
+    margin-top:5px;
+    position: absolute;
+    top: 25%;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+#total_costs{
+    display: inline;
+    height: 40px;
+    width: 100px;
+    text-align: center;
+    margin-right: 20px;
+    margin-top: 5px;
+
+    font-weight: bold;
+    position: absolute;
+    top: 25%;
+    right:0px;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.btn-custom{
+    background-color: #000090;
+    color: white;
+}
+
+.btn-custom:hover{
+    background-color: #304090;
+}
+
+.btn-custom:focus{
+    background-color: #304090;
 }
