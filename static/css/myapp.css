@@ -89,7 +89,7 @@ button.btn-default{
     width: 25%;
     padding-top: 15px;
     padding-bottom: 15px;
-    background-color: #708090;
+    background-color: #2f4f4f;
     -webkit-border-radius: 5px;
     position: relative;
 }
@@ -130,4 +130,15 @@ button.btn-default{
 
 .btn-custom:focus{
     background-color: #304090;
+}
+
+.btn-danger{
+    background-color: #ff1414;
+}
+.bg-primary {
+    background-color: #2f4f4f;
+}
+
+a{
+    color: #ffffff;
 }

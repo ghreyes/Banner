@@ -231,15 +231,7 @@ window.onload = function() {
         }
         else{
             goal = curr_person.goal - (bal+net);
-            incomeColor = 'rgb(20,20,255)';
-        }
-
-        //set balance to blue if deficit and green otherwise
-        if(net < 0){
-            balColor = 'rgb(20,20,255)';
-        }
-        else{
-            balColor = 'rgb(0, 150, 0)';
+            incomeColor = 'rgb(0,150,0)';
         }
 
         var bChart = new Chart(ctx2, {
@@ -249,7 +241,7 @@ window.onload = function() {
                 datasets: [{
                     data: [bal, Math.abs(net), goal],
                     backgroundColor: [
-                        balColor,
+                        'rgb(20,20,255)',
                         incomeColor,
                         'rgb(255, 220, 20)'
                     ],
