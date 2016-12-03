@@ -4,7 +4,7 @@
 #  and http://web2py.com/book/default/chapter/11?search=app.yaml
 
 ###application: yourappname
-version: 1
+#version: 1
 api_version: 1
 
 # use these lines for Python 2.7
