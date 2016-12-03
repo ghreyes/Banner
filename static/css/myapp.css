@@ -13,13 +13,12 @@ label, strong {font-weight:bold}
 
 input.form_stuff {
     display: inline;
-    float:right;
     height: 40px;
     width: 100px;
-    border: 3px solid #000;
+    border: 1px solid #000;
+    margin-top: 10px;
     -webkit-border-radius: 5px;
     text-align: center;
-    margin-right: 20px;
 }
 
 .curr_bal{
@@ -160,4 +159,27 @@ a{
 .right{
   position: absolute;
   left: 100%
+}
+
+.post_listing {
+  margin: 10px 0px 10px 0px;
+  padding: 0 0 0 0px;
+}
+
+/* line 7, ../sass/_main.scss */
+.post_list {
+  padding-top: 10px;
+}
+
+/* line 11, ../sass/_main.scss */
+.post {
+  border-color: #cccccc;
+  border-style: solid;
+  border-width: 1px;
+  background: #eeeeee;
+  margin: 20px 0px 20px 0px;
+  padding: 20px;
+  -moz-border-radius: 16px;
+  -webkit-border-radius: 16px;
+  border-radius: 16px;
 }
