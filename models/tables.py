@@ -17,6 +17,18 @@ def get_email():
     if auth.user: return auth.user.email
     else:         return 'No E-mail Specified'
 
+db.define_table('post',
+                Field('user_email', default=auth.user.email if auth.user_id else None),
+                Field('post_content', 'text'),
+                Field('created_on', 'datetime', default=datetime.datetime.utcnow()),
+                Field('updated_on', 'datetime', update=datetime.datetime.utcnow()),
+                )
+
+db.post.user_email.readable = db.post.user_email.writable = False
+db.post.post_content.requires = IS_NOT_EMPTY()
+db.post.created_on.readable = db.post.created_on.writable = False
+db.post.updated_on.readable = db.post.updated_on.writable = False
+
 
 #the code for user may better fit in db.py under the auth_user.extra_fields function
 db.define_table('person',
