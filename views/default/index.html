@@ -6,7 +6,31 @@
         redirect( URL( 'default', 'chart') )}}
         {{pass}}
 
+        {{if  '/default/user/login?_next=/banner/default/index#' in request.env.http_referer:
+        redirect( URL( 'default', 'chart') )}}
+        {{pass}}
+
     {{if  '/default/user/register?_next=/banner/default/index' in request.env.http_referer:
+        redirect( URL( 'default', 'chart') )}}
+        {{pass}}
+
+        {{if  '/default/user/register?_next=/banner/default/index#' in request.env.http_referer:
+        redirect( URL( 'default', 'chart') )}}
+        {{pass}}
+
+    {{if  '/default/user/login#' in request.env.http_referer:
+        redirect( URL( 'default', 'chart') )}}
+        {{pass}}
+
+        {{if  '/default/user/login' in request.env.http_referer:
+        redirect( URL( 'default', 'chart') )}}
+        {{pass}}
+
+        {{if  '/default/user/register' in request.env.http_referer:
+        redirect( URL( 'default', 'chart') )}}
+        {{pass}}
+
+        {{if  '/default/user/register#' in request.env.http_referer:
         redirect( URL( 'default', 'chart') )}}
         {{pass}}
 
