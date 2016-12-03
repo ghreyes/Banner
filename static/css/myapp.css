@@ -142,3 +142,22 @@ button.btn-default{
 a{
     color: #ffffff;
 }
+
+/* line 2, ../sass/_main.scss */
+
+
+.left {
+  position: absolute;
+  left: 20px
+}
+
+.mid{
+  position: absolute;
+  left: 50%
+}
+
+
+.right{
+  position: absolute;
+  left: 100%
+}

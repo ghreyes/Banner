@@ -19,6 +19,9 @@ def index():
     """
     return dict()
 
+def chart():
+    return dict()
+
 
 def user():
     """
