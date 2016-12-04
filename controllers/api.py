@@ -85,48 +85,26 @@ def update_stats():
     ))
 
 
-@auth.requires_signature()
-# Gets average info for all users
-def get_average_info():
-    users = db().select(db.users.ALL)
-    avg_bal = 0
-    avg_spendings = 0
-    avg_income = 0
-    for user in users:
-        avg_bal += user.cur_balance
-        avg_income += user.income
-        avg_spendings += user.spendings
-    avg_bal = avg_bal / db.users.size()
-    avg_income = avg_income / db.users.size()
-    avg_spendings = avg_spendings / db.users.size()
-    return response.json(dict(
-        avg_bal=avg_bal,
-        avg_income=avg_income,
-        avg_spend=avg_spendings
-    ))
-
-
 def update_costs():
     p = db(db.person.user_email == auth.user.email).select().first()
-    logger.info(p)
     p.rent = request.vars.rent
     p.food = request.vars.food
     p.utilities = request.vars.utilities
     p.transportation = request.vars.transportation
     p.other = request.vars.other
-    p.total = (request.vars.rent + request.vars.food + request.vars.utilities + request.vars.transportation + request.vars.other)
+    p.total = int(p.rent) + int(p.food) + int(p.utilities) + int(p.transportation) + int(p.other)
     p.update_record()
     person = dict(
-        gender = p.gender,
-        age = p.age,
-        goal = p.goal,
-        income = p.income,
-        rent = p.rent,
-        food = p.food,
-        utilities = p.utilities,
-        transportation = p.transportation,
-        other = p.other,
-        total = p.total
+        gender=p.gender,
+        age=p.age,
+        goal=p.goal,
+        income=p.income,
+        rent=p.rent,
+        food=p.food,
+        utilities=p.utilities,
+        transportation=p.transportation,
+        other=p.other,
+        total=p.total
     )
     return response.json(dict(
         person=person
