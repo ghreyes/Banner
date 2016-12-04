@@ -1,0 +1,222 @@
+/*label {
+    font-size: 30px;
+    color: #333;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right:15px;
+    float:left;
+}*/
+*, *:after, *:before {border:0; margin:0; padding:0;}
+@import url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
+
+.isa_info, .isa_success, .isa_warning, .isa_error {
+margin: 10px 0px;
+width: 30%;
+height: 20%;
+padding:12px;
+}
+.isa_info {
+    color: #00529B;
+    background-color: #BDE5F8;
+}
+.isa_success {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+}
+.isa_warning {
+    color: #9F6000;
+    background-color: #FEEFB3;
+}
+.isa_error {
+    color: #D8000C;
+    background-color: #FFBABA;
+}
+.isa_info i, .isa_success i, .isa_warning i, .isa_error i {
+    margin:5px 10px;
+    font-size:2em;
+    vertical-align:middle;
+}
+label, strong {font-weight:bold}
+
+input.form_stuff {
+    display: inline;
+    height: 40px;
+    width: 100px;
+    border: 1px solid #000;
+    margin-top: 10px;
+    -webkit-border-radius: 5px;
+    text-align: center;
+}
+
+.curr_bal{
+    font-size: 30px;
+    color: #333;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right:15px;
+    float:left;
+}
+
+.outer_bounds{
+    margin-left:25%;
+}
+
+.col-sm-3{
+    font-family: Verdana, Geneva;
+}
+
+.container{
+    margin-left: 50px;
+}
+
+h2{
+    color: #2f4f4f;
+    font-family: Impact, "charcoal";
+    font-size: 44px;
+}
+
+input.btn-primary{
+    background-color: #2f4f4f;
+}
+
+button.btn-default{
+    background-color: #708090;
+}
+
+#submit_record__row{
+    float: right;
+}
+
+#costChart{
+    display: inline;
+}
+
+#balChart{
+    display:inline;
+}
+
+.chartsDiv{
+    padding-top:20px;
+}
+
+.costChartDiv{
+    padding-left: 15%;
+    float:left;
+}
+
+.balChartDiv{
+    padding-right: 15%;
+    float: right;
+}
+
+.form-row{
+    height: 70px;
+    width: 25%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #2f4f4f;
+    -webkit-border-radius: 5px;
+    position: relative;
+}
+
+#form-label{
+    margin-left:20px;
+    margin-top:5px;
+    position: absolute;
+    top: 25%;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+#total_costs{
+    display: inline;
+    height: 40px;
+    width: 100px;
+    text-align: center;
+    margin-right: 20px;
+    margin-top: 5px;
+
+    font-weight: bold;
+    position: absolute;
+    top: 25%;
+    right:0px;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+.btn-custom{
+    background-color: #000090;
+    color: white;
+}
+
+.btn-custom:hover{
+    background-color: #304090;
+}
+
+.btn-custom:focus{
+    background-color: #304090;
+}
+
+.btn-danger{
+    background-color: #ff1414;
+}
+.bg-primary {
+    background-color: #2f4f4f;
+}
+
+a{
+    color: #ffffff;
+}
+
+/* line 2, ../sass/_main.scss */
+
+
+
+
+.mid{
+  text-align: center;
+    font-size: 500%;
+
+}
+
+.line{
+text-align: center;
+    font-size: 200%;
+}
+
+.space{
+    text-align:center;
+    font-size: 150%;
+
+}
+
+
+
+.post_listing {
+  margin: 10px 0px 10px 0px;
+  padding: 0 0 0 0px;
+}
+
+/* line 7, ../sass/_main.scss */
+.post_list {
+  padding-top: 10px;
+}
+
+/* line 11, ../sass/_main.scss */
+.post {
+  border-color: #cccccc;
+  border-style: solid;
+  border-width: 1px;
+  background: #eeeeee;
+  margin: 20px 0px 20px 0px;
+  padding: 20px;
+  -moz-border-radius: 16px;
+  -webkit-border-radius: 16px;
+  border-radius: 16px;
+}
+
+.header{
+    font-size:150%
+}
