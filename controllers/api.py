@@ -69,16 +69,16 @@ def update_stats():
     p.age = request.vars.age
     p.update_record()
     person = dict(
-        gender = p.gender,
-        age = p.age,
-        goal = p.goal,
-        income = p.income,
-        rent = p.rent,
-        food = p.food,
-        utilities = p.utilities,
-        transportation = p.transportation,
-        other = p.other,
-        total = p.total
+        gender=request.vars.gender,
+        age=request.vars.age,
+        goal=p.goal,
+        income=p.income,
+        rent=p.rent,
+        food=p.food,
+        utilities=p.utilities,
+        transportation=p.transportation,
+        other=p.other,
+        total=p.total
     )
     return response.json(dict(
         person=person
@@ -93,18 +93,19 @@ def update_costs():
     p.transportation = request.vars.transportation
     p.other = request.vars.other
     p.total = int(p.rent) + int(p.food) + int(p.utilities) + int(p.transportation) + int(p.other)
+    total = p.total
     p.update_record()
     person = dict(
         gender=p.gender,
         age=p.age,
         goal=p.goal,
         income=p.income,
-        rent=p.rent,
-        food=p.food,
-        utilities=p.utilities,
-        transportation=p.transportation,
-        other=p.other,
-        total=p.total
+        rent=request.vars.rent,
+        food=request.vars.food,
+        utilities=request.vars.utilities,
+        transportation=request.vars.transportation,
+        other=request.vars.other,
+        total=total
     )
     return response.json(dict(
         person=person
@@ -121,8 +122,9 @@ def update_balance():
     person = dict(
         gender=p.gender,
         age=p.age,
-        goal=p.goal,
-        income=p.income,
+        goal=request.vars.goal,
+        current_balance=request.vars.current_balance,
+        income=request.vars.income,
         rent=p.rent,
         food=p.food,
         utilities=p.utilities,
