@@ -6,7 +6,9 @@
     var get_user_info_url = "{{=URL('api', 'get_user_info', user_signature=True)}}";
     var get_average_info_url = "{{=URL('api', 'get_average_info', user_signature=True)}}";
 */
-var curr_person;
+
+// Variables for charts/updating
+var curr_person, edited_costs = false, edited_balance = false, edited_stats, delay = 0, firstLoad = true;
 var logg_in;
 
 var app = function () {
@@ -39,6 +41,18 @@ var app = function () {
         }
     }
 
+    self.edited_costs = function(){
+        edited_costs = true;
+    }
+
+    self.edited_balance = function(){
+        edited_balance = true;
+    }
+
+    self.edited_stats = function(){
+        edited_stats = true;
+    }
+
     self.get_user_info = function(){ // Get current user info
         $.get(get_user_info_url, function(data) {
             self.vue.logged_in = data.logged_in;
@@ -53,7 +67,7 @@ var app = function () {
     self.update_stats = function(){  // update user info
         $.post(update_stats_url, {
             gender: self.vue.gender,
-            age: self.vue.age
+            age: self.vue.age,
         });
     }
 
@@ -115,6 +129,9 @@ var app = function () {
             edit_balance_button: self.edit_balance_button,
             edit_stats_button: self.edit_stats_button,
             edit_costs_button: self.edit_costs_button,
+            edited_costs: self.edited_costs,
+            edited_balance: self.edited_balance,
+            edited_stats: self.edited_stats,
             get_user_info: self.get_user_info,
             update_stats: self.update_stats,
             update_costs: self.update_costs,
