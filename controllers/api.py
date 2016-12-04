@@ -1,3 +1,5 @@
+import time
+
 def index():
     pass
 
@@ -17,6 +19,7 @@ def get_user_name_from_email(email):
 # for logged_in status
 def get_user_info():
     logged_in = auth.user_id is not None
+    time.sleep(0.25)
     user = db(db.person.user_email == auth.user.email).select().first()
     if logged_in:
         #user profile not setup yet, give them default values
@@ -114,7 +117,6 @@ def update_costs():
 
 def update_balance():
     p = db(db.person.user_email == auth.user.email).select().first()
-    logger.info(p)
     p.current_balance = request.vars.current_balance
     p.goal = request.vars.goal
     p.income = request.vars.income
