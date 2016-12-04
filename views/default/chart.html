@@ -1,0 +1,410 @@
+{{extend 'layout.html'}}
+
+{{block head}}
+<script src="{{=URL('static', 'js/vue.js')}}" xmlns="http://www.w3.org/1999/html"></script>
+<script src="{{=URL('static', 'js/default_index.js')}}" xmlns="http://www.w3.org/1999/html"></script>
+<script src="{{=URL('static', 'js/Chart.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+
+<script>
+    //Put URLs here
+    var get_user_info_url = "{{=URL('api', 'get_user_info', user_signature=True)}}";
+    var update_stats_url = "{{=URL('api', 'update_stats', user_signature=True)}}";
+    var get_average_info_url = "{{=URL('api', 'get_average_info', user_signature=True)}}";
+    var update_costs_url = "{{=URL('api', 'update_costs', user_signature=True)}}";
+    var update_balance_url = "{{=URL('api', 'update_balance', user_signature=True)}}";
+</script>
+{{end}}
+
+<div class = "outer_bounds">
+    <div class="main_content">
+        <div id="vue-div" class="display:none ">
+            <div id="buttons">
+                <div class="button_bar">
+                <!--editing balance info button-->
+                <button v-if="!is_editing_bal && logged_in" id="test" class="btn btn-custom btn-sm" v-on:click="edit_balance_button()" v-bind:class="{'disabled': !logged_in}">
+                {{=icon_add}} Update Balance Info
+                </button>
+                <button v-if="is_editing_bal && logged_in" class="btn btn-danger btn-sm" v-on:click="edit_balance_button()">
+                {{=icon_cancel}}Cancel
+                </button>
+
+                <!--editing costs info button-->
+                <button v-if="!is_editing_costs && logged_in" id="test" class="btn btn-custom btn-sm" v-on:click="edit_costs_button()" v-bind:class="{'disabled': !logged_in}">
+                {{=icon_add}} Update User Costs
+                </button>
+                <button v-if="is_editing_costs && logged_in" class="btn btn-danger btn-sm" v-on:click="edit_costs_button()">
+                {{=icon_cancel}}Cancel
+                </button>
+
+                <!--editing statistics info button-->
+                <button v-if="!is_editing_stats && logged_in" id="test" class="btn btn-custom btn-sm" v-on:click="edit_stats_button()" v-bind:class="{'disabled': !logged_in}">
+                {{=icon_add}} Update User Info
+                </button>
+                <button v-if="is_editing_stats && logged_in" class="btn btn-danger btn-sm" v-on:click="edit_stats_button()">
+                {{=icon_cancel}}Cancel
+                </button>
+                </div>
+            </div>
+
+            <!--editing balance info button-->
+            <div v-if="is_editing_bal" id="update-info">
+                <form action="#" v-on:submit.prevent="update_balance(), get_user_info()" class="form-horizontal" enctype="multipart/form-data" method="post">
+                    <div class="form-group" id="no_table_content">
+                        <br>
+                        <div class="form-row">
+                            <label id="form-label">Current Balance:</label>
+                            <input class="form_stuff" v-model="current_balance=person.current_balance" type="text" placeholder="The amount of money you currently have"/> </input>
+                        </div>
+                        <div class="form-row">
+                            <label id="form-label">Goal:</label>
+                            <input class="form_stuff" v-model="goal=person.goal" type="text" placeholder="The amount of money you want to have"/> </input>
+                        </div>
+                        <div class="form-row">
+                            <label id="form-label">Income:</label>
+                            <input class="form_stuff" v-model="income=person.income" type="text" placeholder="Monthly Income"/> </input>
+                        </div>
+                    </div>
+                    <div class="form-group" id="submit_record">
+                        <div>
+                            <button class="btn btn-custom btn-sm" id="update_info_submit" type="submit" v-on:click="edit_balance_button(), edited_balance()"/>Update</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!--editing costs-->
+            <div v-if="is_editing_costs" id="update-costs">
+                <form action="#" v-on:submit.prevent="update_costs(), get_user_info()" class="form-horizontal" enctype="multipart/form-data" method="post">
+                    <div class="form-group" id="no_table_content">
+                        <br>
+                        <div class="form-row">
+                            <label id="form-label">Rent:</label>
+                            <input class="form_stuff" v-model="rent=person.rent" type="text" placeholder="Monthly rent cost"/> </input>
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-row">
+                            <label id="form-label">Food:</label>
+                            <input class="form_stuff" v-model="food=person.food" type="text" placeholder="The amount of money spend on food each month"/> </input>
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-row">
+                            <label id="form-label">Utilities:</label>
+                            <input class="form_stuff" v-model="utilities=person.utilities" type="text" placeholder="Monthly utility costs"/> </input>
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-row">
+                            <label id="form-label">Transportation:</label>
+                            <input class="form_stuff" v-model="transportation=person.transportation" type="text" placeholder="Monthly transportation costs"/> </input>
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-row">
+                            <label id="form-label">Other Costs:</label>
+                            <input class="form_stuff" v-model="other=person.other" type="text" placeholder="Miscellaneous spending"/> </input>
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-row">
+                            <label id="form-label">Total Costs:</label>
+                            <span id="total_costs">${person.total}</span>
+                        </div>
+                    </div>
+                    <div class="form-group" id="submit_record">
+                        <div>
+                            <button class="btn btn-custom btn-sm" id="update_costs_submit" type="submit" v-on:click="edit_costs_button(), edited_costs()"/>Update</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!--editing statistics info -->
+            <div v-if="is_editing_stats" id="update-stats">
+                <form action="#" v-on:submit.prevent="update_stats(), get_user_info()" class="form-horizontal" enctype="multipart/form-data" method="post">
+                    <div class="form-group" id="no_table_content">
+                        <br>
+                        <div class="form-row">
+                            <label id="form-label">Age:</label>
+                            <input class="form_stuff" v-model="age=person.age" type="text" placeholder="Your age"/> </input>
+                            <span class="help-block"></span>
+                        </div>
+                        <div class="form-row">
+                            <label id="form-label">Gender:</label>
+                            <input class="form_stuff" v-model="gender=person.gender" type="text" placeholder="Your gender"/> </input>
+                            <span class="help-block"></span>
+                        </div>
+
+                    </div>
+                    <div class="form-group" id="submit_record">
+                        <div>
+                            <button class="btn btn-custom btn-sm" id="update_stats_submit" type="submit" v-on:click="edit_stats_button(), edited_stats()"/>Update</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="chartsDiv" id="chartsDiv" v-if="logged_in">
+    <div class="costChartDiv" id="costChartDiv">
+        <canvas id="costChart" width="500" height="500" style="display:inline"></canvas>
+    </div>
+    <div class="balChartDiv" id="balChartDiv">
+        <canvas id="balChart" width="500" height="500" style="display:inline"></canvas>
+    </div>
+</div>
+    <div class="avgChartDiv" id="avgChartDiv">
+        <canvas id="avgChart" width="500" height="300" style="display:inline"></canvas>
+    </div>
+</div>
+
+<button type="button" onclick="myFunction()">Evaluate</button>
+
+
+<div>
+    <div class="isa_info">
+        <i class="fa fa-info-circle"></i>
+        <span id="rentid"></span>
+    </div>
+    <div class="isa_info">
+        <i class="fa fa-info-circle"></i>
+        <span id="foodid"></span>
+    </div>
+    <div class="isa_info">
+        <i class="fa fa-info-circle"></i>
+        <span id="utilid"></span>
+    </div>
+    <div class="isa_info">
+        <i class="fa fa-info-circle"></i>
+        <span id="transid"></span>
+    </div>
+    <div class="isa_info">
+        <i class="fa fa-info-circle"></i>
+        <span id="otherid"></span>
+    </div>
+    <div class="isa_success">
+         <i class="fa fa-info-circle"></i>
+         <span id="totalid"></span>
+    </div>
+</div>
+
+<h2 style="color:#120012">Memo</h2>
+    <textarea rows="10" cols="50" >Type a memo</textarea>
+
+<html>
+<body>
+
+
+<script>
+function myFunction() {
+    var rtext, ftext, utext, ttext, otext, tottext;
+    var rent = curr_person.rent;
+    var food = curr_person.food;
+    var util = curr_person.utilities;
+    var trans = curr_person.transportation;
+    var other = curr_person.other;
+    var total = rent + food + util + trans + other;
+    if (rent < 840) {
+        rtext = "You spend less than the average in rent";
+    } else {
+        rtext = "You spend more than the average in rent";
+    }
+    if (food < 550) {
+        ftext = "You spend less than the average in food";
+    } else {
+        ftext = "You spend more than the average in food";
+    }
+    if (util < 589) {
+        utext = "You spend less than the average in utilities";
+    } else {
+        utext = "You spend more than the average in utilities";
+    }
+    if (trans < 750) {
+        ttext = "You spend less than the average in transportation";
+    } else {
+        ttext = "You spend more than the average in transportation";
+    }
+    if (other < 1154) {
+        otext = "You spend less than the average in others";
+    } else {
+        otext = "You spend more than the average in others";
+    }
+    if (total < 3883) {
+        tottext = "You spend less than the average in total";
+    } else {
+        tottext = "You spend more than the average in total";
+    }
+    document.getElementById("rentid").innerHTML = rtext;
+    document.getElementById("foodid").innerHTML = ftext;
+    document.getElementById("utilid").innerHTML = utext;
+    document.getElementById("transid").innerHTML = ttext;
+    document.getElementById("otherid").innerHTML = otext;
+    document.getElementById("totalid").innerHTML = tottext;
+}
+</script>
+</body>
+</html>
+
+<script>
+//allows chart to be built AFTER page load so data is updated
+window.onload = function() {
+    //build chart AFTER ajax .get function is done
+    $( document ).ajaxComplete(function(event, xhr, settings) {
+        if (settings.type === "POST" && (settings.data.search("age") > 0)){return;} // Suppress new charts for update_stats
+        else if (settings.url.search("get_user_info") > 0 && edited_stats){edited_stats = false; return; }
+
+        // Allows the charts to be properly updated by 'deleting' canvas elements, then re-adding them
+        var avgChartcan = document.getElementById("avgChart");
+        var costChartcan = document.getElementById("costChart");
+        var balChartcan = document.getElementById("balChart");
+
+        // Charts get called twice when updating(1 for updating, 1 for subsequent get_user_info call,
+        // ensure 'update' graph is replaced with get_user_info instance graph by 'delay' variable)
+        if (edited_costs && delay <= 2) {
+            var costChartDiv = document.getElementById("costChartDiv");
+            var avgChartDiv = document.getElementById("avgChartDiv");
+            var balChartDiv = document.getElementById("balChartDiv");
+            costChartcan.remove();
+            avgChartcan.remove();
+            balChartcan.remove();
+            $(costChartDiv).append('<canvas id="costChart" width="500" height="500" style="display:inline"></canvas>');
+            $(avgChartDiv).append('<canvas id="avgChart" width="500" height="500" style="display:inline"></canvas>');
+            $(balChartDiv).append('<canvas id="balChart" width="500" height="500" style="display:inline"></canvas>');
+        }
+        else if (edited_balance && delay <= 2){
+            var balChartDiv = document.getElementById("balChartDiv");
+            balChartcan.remove();
+            $(balChartDiv).append('<canvas id="balChart" width="500" height="500" style="display:inline"></canvas>');
+        }
+
+        var ctx = document.getElementById("costChart");
+        var ctx2 = document.getElementById("balChart");
+        var ctx3 = document.getElementById("avgChart");
+
+        var rent = curr_person.rent;
+        var food = curr_person.food;
+        var util = curr_person.utilities;
+        var trans = curr_person.transportation;
+        var other = curr_person.other;
+
+        if (edited_costs || firstLoad) { // Loaded on first load or update_costs
+            var cChart = new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: ["Rent", "Food", "Utilities", "Transportation", "Other"],
+                   datasets: [{
+                        data: [rent, food, util, trans, other],
+                        backgroundColor: [
+                            'rgb(255, 128, 0)',
+                            'rgb(255, 50, 50)',
+                            'rgb(255, 255, 50)',
+                            'rgb(75, 192, 192)',
+                            'rgb(102, 0, 204)'
+                       ],
+                        borderColor: [
+                            'rgb(0,0,0)',
+                            'rgb(0,0,0)',
+                            'rgb(0,0,0)',
+                            'rgb(0,0,0)',
+                           'rgb(0,0,0)'
+                        ],
+                        borderWidth: 1
+                   }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            display: false
+                        }]
+                    },
+                    responsive: false,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+        var total = curr_person.total;
+        var bal = curr_person.current_balance;
+        var income = curr_person.income;
+        var goal = curr_person.goal - (bal + income);
+        var net = income - total;
+        var incomeColor;
+        var balColor;
+        //set income to red if deficit and blue otherwise
+        if(net < 0){
+            incomeColor = 'rgb(255,0,0)';
+            bal = bal + net;
+        }
+        else{
+            goal = curr_person.goal - (bal+net);
+            incomeColor = 'rgb(0,150,0)';
+        }
+        if (edited_balance || edited_costs || firstLoad) {
+            var bChart = new Chart(ctx2, {
+                type: 'pie',
+                data: {
+                    labels: ["Balance", "Net Income", "Amount until Goal"],
+                    datasets: [{
+                        data: [bal, Math.abs(net), goal],
+                        backgroundColor: [
+                            'rgb(20,20,255)',
+                            incomeColor,
+                            'rgb(255, 220, 20)'
+                        ],
+                        borderColor: [
+                            'rgb(0,0,0)',
+                            'rgb(0,0,0)',
+                            'rgb(0,0,0)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            display: false
+                        }]
+                    },
+                    responsive: false,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+
+        if (edited_costs || firstLoad) {
+            var aChart = new Chart(ctx3, {
+                type: 'bar',
+                data: {
+                    labels: ["Rent", "Food", "Utilities", "Transportation", "Other", "Total"],
+                    datasets: [{
+                        label: "User",
+                        data: [rent, food, util, trans, other, rent + food + util + trans + other],
+                        backgroundColor: 'rgb(255, 50, 50)'
+                    }, {
+                        label: "Average",
+                        data: [840, 550, 589, 750, 1154, 3883],
+                        backgroundColor: 'rgb(20,20,255)'
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            display: false
+                        }]
+                    },
+                    responsive: false,
+                    maintainAspectRatio: false
+                }
+            });
+        }
+        if (delay == 1 || firstLoad) {
+                edited_balance = false;
+                edited_costs = false;
+                firstLoad = false;
+                delay = 0;
+            } else {
+                delay = delay + 1;
+        }
+    });
+}
+
+</script>
+
