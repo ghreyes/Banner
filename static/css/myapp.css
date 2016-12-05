@@ -232,3 +232,21 @@ text-align: center;
 .header{
     font-size:150%
 }
+
+.navbar-left
+{
+    margin-left: 30%;
+}
+
+.nav
+{
+    margin-left: 30%;
+}
+.navbar-nav
+{
+    margin-left: 30.3%;
+}
+
+.container-fluid2{
+    text-align: center;
+}
