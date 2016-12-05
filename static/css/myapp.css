@@ -229,9 +229,7 @@ text-align: center;
   border-radius: 16px;
 }
 
-.header{
-    font-size:150%
-}
+
 
 
 .container-fluid2{
@@ -284,4 +282,16 @@ text-align: center;
 
 .navbar-toggle {
     z-index:3;
+}
+
+.p{
+    text-align: center;
+}
+
+.header{
+    text-size: 150%;
+}
+
+.footer{
+    text-size: 150%;
 }
