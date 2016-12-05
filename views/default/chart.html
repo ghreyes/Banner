@@ -54,15 +54,15 @@
                         <br>
                         <div class="form-row">
                             <label id="form-label">Current Balance:</label>
-                            <input class="form_stuff" v-model="current_balance=person.current_balance" type="text" placeholder="The amount of money you currently have"/> </input>
+                            <input class="form_stuff" v-model="current_balance=person.current_balance" type="number" placeholder="The amount of money you currently have"/> </input>
                         </div>
                         <div class="form-row">
                             <label id="form-label">Goal:</label>
-                            <input class="form_stuff" v-model="goal=person.goal" type="text" placeholder="The amount of money you want to have"/> </input>
+                            <input class="form_stuff" v-model="goal=person.goal" type="number" placeholder="The amount of money you want to have"/> </input>
                         </div>
                         <div class="form-row">
                             <label id="form-label">Income:</label>
-                            <input class="form_stuff" v-model="income=person.income" type="text" placeholder="Monthly Income"/> </input>
+                            <input class="form_stuff" v-model="income=person.income" type="number" placeholder="Monthly Income"/> </input>
                         </div>
                     </div>
                     <div class="form-group" id="submit_record">
@@ -80,27 +80,27 @@
                         <br>
                         <div class="form-row">
                             <label id="form-label">Rent:</label>
-                            <input class="form_stuff" v-model="rent=person.rent" type="text" placeholder="Monthly rent cost"/> </input>
+                            <input class="form_stuff" v-model="rent=person.rent" type="number" placeholder="Monthly rent cost"/> </input>
                             <span class="help-block"></span>
                         </div>
                         <div class="form-row">
                             <label id="form-label">Food:</label>
-                            <input class="form_stuff" v-model="food=person.food" type="text" placeholder="The amount of money spend on food each month"/> </input>
+                            <input class="form_stuff" v-model="food=person.food" type="number" placeholder="The amount of money spend on food each month"/> </input>
                             <span class="help-block"></span>
                         </div>
                         <div class="form-row">
                             <label id="form-label">Utilities:</label>
-                            <input class="form_stuff" v-model="utilities=person.utilities" type="text" placeholder="Monthly utility costs"/> </input>
+                            <input class="form_stuff" v-model="utilities=person.utilities" type="number" placeholder="Monthly utility costs"/> </input>
                             <span class="help-block"></span>
                         </div>
                         <div class="form-row">
                             <label id="form-label">Transportation:</label>
-                            <input class="form_stuff" v-model="transportation=person.transportation" type="text" placeholder="Monthly transportation costs"/> </input>
+                            <input class="form_stuff" v-model="transportation=person.transportation" type="number" placeholder="Monthly transportation costs"/> </input>
                             <span class="help-block"></span>
                         </div>
                         <div class="form-row">
                             <label id="form-label">Other Costs:</label>
-                            <input class="form_stuff" v-model="other=person.other" type="text" placeholder="Miscellaneous spending"/> </input>
+                            <input class="form_stuff" v-model="other=person.other" type="number" placeholder="Miscellaneous spending"/> </input>
                             <span class="help-block"></span>
                         </div>
                         <div class="form-row">
@@ -123,12 +123,12 @@
                         <br>
                         <div class="form-row">
                             <label id="form-label">Age:</label>
-                            <input class="form_stuff" v-model="age=person.age" type="text" placeholder="Your age"/> </input>
+                            <input class="form_stuff" v-model="age=person.age" type="number" placeholder="Your age"/> </input>
                             <span class="help-block"></span>
                         </div>
                         <div class="form-row">
                             <label id="form-label">Gender:</label>
-                            <input class="form_stuff" v-model="gender=person.gender" type="text" placeholder="Your gender"/> </input>
+                            <input class="form_stuff" v-model="gender=person.gender" type="ratio" placeholder="Your gender"/> </input>
                             <span class="help-block"></span>
                         </div>
 
@@ -144,7 +144,7 @@
     </div>
 </div>
 
-<div class="chartsDiv" id="chartsDiv" v-if="logged_in">
+<div class="chartsDiv">
     <div class="costChartDiv" id="costChartDiv">
         <canvas id="costChart" width="500" height="500" style="display:inline"></canvas>
     </div>
@@ -152,15 +152,13 @@
         <canvas id="balChart" width="500" height="500" style="display:inline"></canvas>
     </div>
 </div>
-    <div class="avgChartDiv" id="avgChartDiv">
-        <canvas id="avgChart" width="500" height="300" style="display:inline"></canvas>
-    </div>
+
+<div class="avgChartDiv" id="avgChartDiv">
+    <canvas id="avgChart" width="500" height="300" style="display:inline"></canvas>
 </div>
 
-<button type="button" onclick="myFunction()">Evaluate</button>
-
-
-<div>
+<div class="average-info">
+    <button type="button" onclick="myFunction()">Evaluate</button>
     <div class="isa_info">
         <i class="fa fa-info-circle"></i>
         <span id="rentid"></span>
@@ -224,9 +222,9 @@ function myFunction() {
         ttext = "You spend more than the average in transportation";
     }
     if (other < 1154) {
-        otext = "You spend less than the average in others";
+        otext = "You spend less than the average in miscellaneous costs";
     } else {
-        otext = "You spend more than the average in others";
+        otext = "You spend more than the average in miscellaneous costs";
     }
     if (total < 3883) {
         tottext = "You spend less than the average in total";
