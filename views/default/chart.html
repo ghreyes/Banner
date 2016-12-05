@@ -46,9 +46,7 @@
                 </button>
 
                 <!--editing statistics info button-->
-                <button v-if="!is_editing_stats && logged_in" id="test" class="btn btn-custom btn-sm" v-on:click="edit_stats_button()" v-bind:class="{'disabled': !logged_in}">
-                {{=icon_add}} Update User Info
-                </button>
+
                 <button v-if="is_editing_stats && logged_in" class="btn btn-danger btn-sm" v-on:click="edit_stats_button()">
                 {{=icon_cancel}}Cancel
                 </button>
