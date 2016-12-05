@@ -9,12 +9,11 @@
 # -------------------------------------------------------------------------
 
 def index():
-    print(auth.user_id)
-    if auth.user_id:
-        redirect(URL('chart'))
+
     return dict()
 
 def posts():
+
     return dict()
 
 def chart():

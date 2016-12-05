@@ -53,58 +53,40 @@
     <!-- Navbar ======================================= -->
     <nav class="navbar navbar-dark bg-primary text-muted   navbar-fixed-top" role="navigation">
       <div class="container-fluid">
-
-
-
-
           {{=response.logo or ''}}
+    <ul class = "temp">
+      <a class="navbar-how" href="http://127.0.0.1:8000/Banner/default/index">How It Works</a>
+            <a class="navbar-email" href="mailto:someone@example.com?Subject=Hello%20again" target="_top">Send Mail</a>
+              <a class="navbar-post" href={{=URL('posts')}}>Comments</a>
+            {{if auth.user_id:}}
+                <a class="navbar-charts" href='http://127.0.0.1:8000/Banner/default/chart'>Charts</a>
+            {{else:}}
+                <a class="navbar-charts" href='http://127.0.0.1:8000/Banner/default/user/login?_next=/Banner/default/chart'>Charts</a>
+            {{pass}}
+        </ul>
+  </div>
 
 
-          <ul class="nav navbar-nav navbar-left">
-            <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            </li>
-
-             <li><a href="{{=URL('index')}}">How It Works</a></li>
-            <li><a href="mailto:someone@example.com?Subject=Hello%20again" target="_top">Send Mail</a></li>
-              <li><a href={{=URL('index')}}>Comments</a></li>
-
-
-          </ul>
-              <ul class="nav navbar-nav navbar-right">
-            {{='auth' in globals() and auth.navbar('Welcome',mode='dropdown') or ''}}
-          </ul>
-
-
-
-
-
-
-      </div>
-    </nav>
+    <ul class="nav navbar-nav navbar-right">
+      {{='auth' in globals() and auth.navbar('Welcome',mode='dropdown') or ''}}
+    </ul>
+  </div>
+</nav>
     <!-- Masthead ===================================== -->
     {{block header}}
     {{end}}
     <!-- Main ========================================= -->
     <!-- Begin page content -->
-
-
-
     <style>
-body{
-	background-color: ghostwhite;
+        body{
+	        background-color: ghostwhite;
+        }
+
+    </style>
 
 
-}
 
-</style>
+
 
 
     <div class="container-fluid main-container">
@@ -135,21 +117,8 @@ body{
     </div>
     <nav class="navbar navbar-dark bg-primary  navbar-fixed-bottom" role="navigation">
 
-      <div class="container-fluid">
+      <div class="container-fluid2">
           <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-
 
         {{=T('Copyright')}} &#169; {{=request.now.year}}</div>
 

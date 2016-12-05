@@ -233,20 +233,55 @@ text-align: center;
     font-size:150%
 }
 
-.navbar-left
-{
-    margin-left: 30%;
-}
-
-.nav
-{
-    margin-left: 30%;
-}
-.navbar-nav
-{
-    margin-left: 30.3%;
-}
 
 .container-fluid2{
     text-align: center;
+}
+
+.container-fluid{
+    position:absolute;
+    width: 100%;
+    left: 0;
+    margin:0 auto;
+}
+
+.navbar-how
+{
+    position: absolute;
+    width: 100%;
+    top: 40%;
+    left: 38%;
+    margin:0 auto;
+}
+
+.navbar-email
+{
+    position: absolute;
+    width: 100%;
+    top: 40%;
+    left: 45.2%;
+    margin:0 auto;
+}
+
+.navbar-post
+{
+    position: absolute;
+    width: 100%;
+    top: 40%;
+    left: 50.8%;
+    margin:0 auto;
+}
+
+.navbar-charts
+{
+    position: absolute;
+    width: 100%;
+    top: 40%;
+    left: 57%;
+    margin:0 auto;
+}
+
+
+.navbar-toggle {
+    z-index:3;
 }
