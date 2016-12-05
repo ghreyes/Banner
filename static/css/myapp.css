@@ -252,3 +252,15 @@ text-align: center;
 .header{
     font-size:150%
 }
+
+.image {
+   position: relative;
+   width: 100%; /* for IE 6 */
+}
+
+#intro-image{
+   position: absolute;
+   top: 50px;
+   left: 0;
+   width: 100%;
+}
