@@ -61,7 +61,9 @@ input.form_stuff {
 }
 
 .outer_bounds{
-    margin-left:25%;
+    float:left;
+    margin-left:5%;
+    width:95%;
 }
 
 .col-sm-3{
@@ -86,8 +88,12 @@ button.btn-default{
     background-color: #708090;
 }
 
+.button_bar{
+    padding-top: 20px;
+}
+
 #submit_record__row{
-    float: right;
+    /*float: right;*/
 }
 
 #costChart{
@@ -99,18 +105,19 @@ button.btn-default{
 }
 
 .chartsDiv{
-    width:100%;
+    float:left;
+    width:60%;
     height:600px;
     padding-top:20px;
 }
 
 .costChartDiv{
-    padding-left: 15%;
+    /*padding-left: 15%;*/
     float:left;
 }
 
 .balChartDiv{
-    padding-right: 15%;
+    padding-right: 5%;
     float: right;
 }
 
@@ -120,12 +127,13 @@ button.btn-default{
 }
 
 .average-info{
-    padding-left: 15%;
+    padding-left: 5%;
+    padding-bottom: 5%;
 }
 
 .form-row{
     height: 70px;
-    width: 25%;
+    width: 55%;
     padding-top: 15px;
     padding-bottom: 15px;
     background-color: #2f4f4f;
@@ -295,3 +303,9 @@ text-align: center;
 .footer{
     text-size: 150%;
 }
+
+.main_content{
+    float:right;
+    width: 40%;
+}
+

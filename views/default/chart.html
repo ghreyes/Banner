@@ -17,6 +17,14 @@
 {{end}}
 
 <div class = "outer_bounds">
+    <div class="chartsDiv">
+        <div class="costChartDiv" id="costChartDiv">
+            <canvas id="costChart" width="350" height="350" style="display:inline"></canvas>
+        </div>
+        <div class="balChartDiv" id="balChartDiv">
+            <canvas id="balChart" width="350" height="350" style="display:inline"></canvas>
+        </div>
+    </div>
     <div class="main_content">
         <div id="vue-div" class="display:none ">
             <div id="buttons">
@@ -144,20 +152,11 @@
     </div>
 </div>
 
-<div class="chartsDiv">
-    <div class="costChartDiv" id="costChartDiv">
-        <canvas id="costChart" width="500" height="500" style="display:inline"></canvas>
-    </div>
-    <div class="balChartDiv" id="balChartDiv">
-        <canvas id="balChart" width="500" height="500" style="display:inline"></canvas>
-    </div>
-</div>
-
-<div class="avgChartDiv" id="avgChartDiv">
-    <canvas id="avgChart" width="500" height="300" style="display:inline"></canvas>
-</div>
 
 <div class="average-info">
+        <div class="avgChartDiv" id="avgChartDiv">
+    <canvas id="avgChart" width="350" height="300" style="display:inline"></canvas>
+</div>
     <button class="eval-button btn btn-default" type="button" onclick="myFunction()">Evaluate</button>
     <div class="isa_info">
         <i class="fa fa-info-circle"></i>
@@ -183,6 +182,7 @@
          <i class="fa fa-info-circle"></i>
          <span id="totalid"></span>
     </div>
+
 </div>
 
 <html>
@@ -261,14 +261,14 @@ window.onload = function() {
             costChartcan.remove();
             avgChartcan.remove();
             balChartcan.remove();
-            $(costChartDiv).append('<canvas id="costChart" width="500" height="500" style="display:inline"></canvas>');
-            $(avgChartDiv).append('<canvas id="avgChart" width="500" height="500" style="display:inline"></canvas>');
-            $(balChartDiv).append('<canvas id="balChart" width="500" height="500" style="display:inline"></canvas>');
+            $(costChartDiv).append('<canvas id="costChart" width="350" height="350" style="display:inline"></canvas>');
+            $(avgChartDiv).append('<canvas id="avgChart" width="350" height="350" style="display:inline"></canvas>');
+            $(balChartDiv).append('<canvas id="balChart" width="350" height="350" style="display:inline"></canvas>');
         }
         else if (edited_balance && delay <= 2){
             var balChartDiv = document.getElementById("balChartDiv");
             balChartcan.remove();
-            $(balChartDiv).append('<canvas id="balChart" width="500" height="500" style="display:inline"></canvas>');
+            $(balChartDiv).append('<canvas id="balChart" width="350" height="350" style="display:inline"></canvas>');
         }
 
         var ctx = document.getElementById("costChart");
