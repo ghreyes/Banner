@@ -133,18 +133,6 @@ button.btn-default{
     position: relative;
 }
 
-#submit_record__row{
-    width: 400px;
-}
-
-input.btn{
-    float:right;
-}
-
-button.btn{
-    float:right;
-}
-
 #form-label{
     margin-left:20px;
     margin-top:5px;
@@ -168,14 +156,6 @@ button.btn{
     right:0px;
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-}
-
-.button_bar{
-    width:50%;
-}
-
-.eval-button{
-    float: left;
 }
 
 .btn-custom{
@@ -253,14 +233,55 @@ text-align: center;
     font-size:150%
 }
 
-.image {
-   position: relative;
-   width: 100%; /* for IE 6 */
+
+.container-fluid2{
+    text-align: center;
 }
 
-#intro-image{
-   position: absolute;
-   top: 50px;
-   left: 0;
-   width: 100%;
+.container-fluid{
+    position:absolute;
+    width: 100%;
+    left: 0;
+    margin:0 auto;
+}
+
+.navbar-how
+{
+    position: absolute;
+    width: 100%;
+    top: 40%;
+    left: 38%;
+    margin:0 auto;
+}
+
+.navbar-email
+{
+    position: absolute;
+    width: 100%;
+    top: 40%;
+    left: 45.2%;
+    margin:0 auto;
+}
+
+.navbar-post
+{
+    position: absolute;
+    width: 100%;
+    top: 40%;
+    left: 50.8%;
+    margin:0 auto;
+}
+
+.navbar-charts
+{
+    position: absolute;
+    width: 100%;
+    top: 40%;
+    left: 57%;
+    margin:0 auto;
+}
+
+
+.navbar-toggle {
+    z-index:3;
 }
