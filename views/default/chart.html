@@ -15,7 +15,7 @@
     var update_balance_url = "{{=URL('api', 'update_balance', user_signature=True)}}";
 </script>
 {{end}}
-
+<br><br><br>
 <div class = "outer_bounds">
     <div class="chartsDiv">
         <div class="costChartDiv" id="costChartDiv">
@@ -73,7 +73,7 @@
                     </div>
                     <div class="form-group" id="submit_record">
                         <div>
-                            <button class="btn btn-custom btn-sm" id="update_info_submit" type="submit" v-on:click="edit_balance_button(), edited_balance()"/>Update</button>
+                            <button class="btn btn-custom1 btn-sm" id="update_info_submit" type="submit" v-on:click="edit_balance_button(), edited_balance()"/>Update</button>
                         </div>
                     </div>
                 </form>
@@ -116,7 +116,7 @@
                     </div>
                     <div class="form-group" id="submit_record">
                         <div>
-                            <button class="btn btn-custom btn-sm" id="update_costs_submit" type="submit" v-on:click="edit_costs_button(), edited_costs()"/>Update</button>
+                            <button class="btn btn-custom1 btn-sm" id="update_costs_submit" type="submit" v-on:click="edit_costs_button(), edited_costs()"/>Update</button>
                         </div>
                     </div>
                 </form>
