@@ -7,6 +7,7 @@
     margin-right:15px;
     float:left;
 }*/
+
 *, *:after, *:before {
     border:0;
     margin:0;
@@ -20,6 +21,7 @@ width: 30%;
 height: 20%;
 padding:12px;
 }
+
 .isa_info {
     color: #00529B;
     background-color: #BDE5F8;
@@ -28,19 +30,23 @@ padding:12px;
     color: #4F8A10;
     background-color: #DFF2BF;
 }
+
 .isa_warning {
     color: #9F6000;
     background-color: #FEEFB3;
 }
+
 .isa_error {
     color: #D8000C;
     background-color: #FFBABA;
 }
+
 .isa_info i, .isa_success i, .isa_warning i, .isa_error i {
     margin:5px 10px;
     font-size:2em;
     vertical-align:middle;
 }
+
 label, strong {
     font-weight:bold
 }
@@ -54,10 +60,9 @@ input.form_stuff {
     -webkit-border-radius: 5px;
     text-align: center;
     margin-right: 20px;
-
 }
 
-.curr_bal{
+.curr_bal {
     font-size: 30px;
     color: #333;
     height: 40px;
@@ -67,35 +72,35 @@ input.form_stuff {
     float:left;
 }
 
-.outer_bounds{
+.outer_bounds {
     float:left;
     margin-left:5%;
     width:95%;
 }
 
-.col-sm-3{
+.col-sm-3 {
     font-family: Verdana, Geneva;
 }
 
-.container{
+.container {
     margin-left: 50px;
 }
 
-h2{
+h2 {
     color: #2f4f4f;
     font-family: Impact, "charcoal";
     font-size: 44px;
 }
 
-input.btn-primary{
+input.btn-primary {
     background-color: #2f4f4f;
 }
 
-button.btn-default{
+button.btn-default {
     background-color: #708090;
 }
 
-.button_bar{
+.button_bar {
     padding-top: 20px;
     width: 20%;
     position: relative;
@@ -103,46 +108,46 @@ button.btn-default{
     margin-right: 30%;
 }
 
-#submit_record__row{
+#submit_record__row {
     /*float: right;*/
 }
 
-#costChart{
+#costChart {
     display: inline;
 }
 
-#balChart{
+#balChart {
     display:inline;
 }
 
-.chartsDiv{
+.chartsDiv {
     float:left;
     width:60%;
     height:600px;
     padding-top:20px;
 }
 
-.costChartDiv{
+.costChartDiv {
     /*padding-left: 15%;*/
     float:left;
 }
 
-.balChartDiv{
+.balChartDiv {
     padding-right: 5%;
     float: right;
 }
 
-.avgChartDiv{
+.avgChartDiv {
     padding-right: 15%;
     float: right;
 }
 
-.average-info{
+.average-info {
     padding-left: 5%;
     padding-bottom: 5%;
 }
 
-.form-row{
+.form-row {
     height: 70px;
     width: 55%;
     padding-top: 15px;
@@ -154,25 +159,22 @@ button.btn-default{
     margin-right: 20%;
 }
 
-#form-label{
+#form-label {
     margin-left:20px;
     margin-top:5px;
     position: absolute;
     top: 25%;
     color: white;
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-
-
 }
 
-#total_costs{
+#total_costs {
     display: inline;
     height: 40px;
     width: 100px;
     text-align: center;
     margin-right: 20px;
     margin-top: 5px;
-
     font-weight: bold;
     position: absolute;
     top: 25%;
@@ -181,87 +183,77 @@ button.btn-default{
     text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
 }
 
-.btn-custom{
+.btn-custom {
     background-color: #000090;
     color: white;
-
 }
 
-.btn-custom1
-{
+.btn-custom1 {
     background-color: #000090;
     color: white;
     float:right;
     margin-right:20%;
 }
 
-.btn-custom:hover{
+.btn-custom:hover {
     background-color: #304090;
 }
 
-.btn-custom:focus{
+.btn-custom:focus {
     background-color: #304090;
 }
 
-.btn-danger{
+.btn-danger {
     background-color: #ff1414;
 }
+
 .bg-primary {
     background-color: #2f4f4f;
 }
 
-a{
+a {
     color: #ffffff;
 }
 
-/* line 2, ../sass/_main.scss */
-
-
-
-
-.mid{
-  text-align: center;
+.mid {
+    text-align: center;
     font-size: 500%;
-
 }
 
-.line{
-text-align: center;
+.line {
+    text-align: center;
     font-size: 200%;
 }
 
-.space{
+.space {
     text-align:center;
     font-size: 150%;
-
 }
 
-
-
 .post_listing {
-  margin: 10px 0px 10px 0px;
-  padding: 0 0 0 0px;
+    margin: 10px 0px 10px 0px;
+    padding: 0 0 0 0px;
 }
 
 /* line 7, ../sass/_main.scss */
-.post_list{
-  padding-top: 10px;
+.post_list {
+    padding-top: 10px;
 }
 
 /* line 11, ../sass/_main.scss */
-.post{
-  border-color: #000000;
-  border-style: solid;
-  border-width: 1px;
-  background: #ffffff;
-  margin: 20px 0px 20px 0px;
-  padding: 20px;
-  -moz-border-radius: 16px;
-  -webkit-border-radius: 16px;
-  border-radius: 16px;
+.post {
+    border-color: #000000;
+    border-style: solid;
+    border-width: 1px;
+    background: #ffffff;
+    margin: 20px 0px 20px 0px;
+    padding: 20px;
+    -moz-border-radius: 16px;
+    -webkit-border-radius: 16px;
+    border-radius: 16px;
 }
 
-.panel-footer{
+.panel-footer {
     border-top: 1px solid #000000;
     padding-top: 10px;
     padding-left: 0px;
@@ -269,12 +261,11 @@ text-align: center;
     padding-bottom: 10px;
 }
 
-
-.container-fluid2{
+.container-fluid2 {
     text-align: center;
 }
 
-.container-fluid{
+.container-fluid {
     position:absolute;
     width: 100%;
     left: 0;
@@ -317,29 +308,28 @@ text-align: center;
     z-index:3;
 }
 
-.p{
+.p {
     text-align: center;
 }
 
-.header{
+.header {
     text-size: 150%;
 }
 
-.footer{
+.footer {
     text-size: 150%;
 }
 
-.main_content{
+.main_content {
     float:right;
     width: 40%;
 }
 
-.intro-image{
+.intro-image {
     text-size: 100%;
 }
 
-.M_image
-{
+.M_image {
     float:left;
     margin-left: 25%;
 }
