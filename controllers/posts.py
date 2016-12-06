@@ -74,9 +74,15 @@ def add_post():
 def edit_post():
     p = db(db.post.id == request.vars.post_id).select().first()  # find and update the post
     p.post_content = request.vars.post_content
-    p.updated_on = datetime.datetime.utcnow()
+    p.updated_on = datetime.utcnow()
     p.update_record()
-    return dict()
+    r = db.post(request.vars.post_id)
+    t = dict(
+        id=r.id,
+        post_content=r.post_content,
+        updated_on=r.updated_on
+    )
+    return response.json(dict(post=t))
 
 @auth.requires_signature()
 def del_post():
