@@ -1,8 +1,6 @@
 
 var app = function() {
-
     var self = {};
-
     Vue.config.silent = false; // show all warnings
 
     // Extends an array
@@ -45,7 +43,6 @@ var app = function() {
         $.post(add_post_url,
             {
                 post_content: self.vue.form_content
-
             },
             function (data) {
                 $.web2py.enableElement($("#add_post_submit"));

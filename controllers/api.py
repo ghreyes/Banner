@@ -3,7 +3,6 @@ import time
 def index():
     pass
 
-
 def get_user_name_from_email(email):
     """Returns a string corresponding to the user first and last names,
     given the user email."""

@@ -54,24 +54,22 @@
     <nav class="navbar navbar-dark bg-primary text-muted   navbar-fixed-top" role="navigation">
       <div class="container-fluid">
           {{=response.logo or ''}}
-    <ul class = "temp">
-    <a class="navbar-how" href="http://127.0.0.1:8000/Banner/default/index">How It Works</a>
+        <ul class = "temp">
             <a class="navbar-email" href="mailto:someone@example.com?Subject=Hello%20again" target="_top">Send Mail</a>
-              <a class="navbar-post" href={{=URL('posts')}}>Comments</a>
+            <a class="navbar-post" href={{=URL('posts')}}>Comments</a>
             {{if auth.user_id:}}
                 <a class="navbar-charts" href='http://127.0.0.1:8000/Banner/default/chart'>Charts</a>
             {{else:}}
                 <a class="navbar-charts" href='http://127.0.0.1:8000/Banner/default/user/login?_next=/Banner/default/chart'>Charts</a>
             {{pass}}
         </ul>
-  </div>
+      </div>
 
-
-    <ul class="nav navbar-nav navbar-right">
-      {{='auth' in globals() and auth.navbar('Welcome',mode='dropdown') or ''}}
-    </ul>
-  </div>
-</nav>
+      <ul class="nav navbar-nav navbar-right">
+        {{='auth' in globals() and auth.navbar('Welcome',mode='dropdown') or ''}}
+      </ul>
+    </div>
+    </nav>
     <!-- Masthead ===================================== -->
     {{block header}}
     {{end}}
@@ -81,10 +79,7 @@
         body{
 	        background-color: ghostwhite;
         }
-
     </style>
-
-
 
     <div class = 'mid image' >
         <img src={{=URL('static', 'images/bg.jpg')}} height="200px" width="100%"/>
@@ -110,54 +105,38 @@
 
     </div>
 
-    <div id = "new" style="padding-top:125px;">
-
+    <div id = "balance" style="padding-top:125px;">
         <img src={{=URL('static', 'images/Update_balance.png')}} height="300px" width="25%"/>
-
         <p style="font-size:150%; padding-top: 25px; padding-left: 680px; float: left; width: 68%; text-align: left;">Enter numerical values for balance, goal, and income respectively.
             Balance is your current amount, net income is your profit of the month, and goal is the maximum amount you would spend in a month.</p>
-
-
     </div>
 
-
-     <div id = "new1" style="padding-top:20px;">
+     <div id = "rent" style="padding-top:20px;">
         <p style="font-size:150%; padding-left: 50px; float: left; width: 20%; text-align: left;">Enter numerical values for each of these
         fields based on how much you spend in that category for a month. (Note: numbers will vary based on location)</p>
         <img src={{=URL('static', 'images/update_cost.png')}} height="500px" width="25%"/>
     </div>
 
- <div id = "new2">
-
+    <div id = "bar">
         <img src={{=URL('static', 'images/bar_chart.png')}} height="400px" width="30%"/>
-
         <p style="padding-top:30px; font-size:150%; padding-left: 680px; float: left; width: 68%; text-align: left;">Bar chart that displays your spendings in every category to the
         average American. This serves to give you a better understanding of where you fall in your spending habits.</p>
-
-
     </div>
 
-
-     <div id = "new3">
+     <div id = "memo">
         <p style="font-size:150%; padding-left: 50px; float: left; width: 20%; text-align: left;">Information of your spending compiled into a series of memos.
         The blue strip represents that you spend less than the average American and the green strip represents that you spend more.</p>
         <img src={{=URL('static', 'images/info.png')}} height="500px" width="35%"/>
     </div>
 
-
-<br>
-
-<div class = 'M_image' >
+    <div class = 'M_image' >
     <img src={{=URL('static', 'images/pie_chart.png')}} height="400px" width="100%"/>
-</div>
+    </div>
 
-    <div>    <p style="float: left;margin-left: 25%; width:50%; font-size:150%; padding-bottom: 100px; text-align:center;">A pie chart visual to encapsulate all the other tools. The pie chart on the left shows your spendings
-    in each subcategory, and the pie chart on the right represents how much more money is necessary to achieve your spending goals.</p></div>
-
-
-
-
-
+    <div>
+        <p style="float: left;margin-left: 25%; width:50%; font-size:150%; padding-bottom: 100px; text-align:center;">A pie chart visual to encapsulate all the other tools. The pie chart on the left shows your spendings
+    in each subcategory, and the pie chart on the right represents how much more money is necessary to achieve your spending goals.</p>
+    </div>
 
     <div class="container-fluid main-container">
       {{if left_sidebar_enabled:}}
@@ -186,14 +165,10 @@
 
     </div>
     <nav class="navbar navbar-dark bg-primary  navbar-fixed-bottom" role="navigation">
-
       <div class="container-fluid2">
           <br>
-
-        {{=T('Copyright')}} &#169; {{=request.now.year}}</div>
-
+          {{=T('Copyright')}} &#169; {{=request.now.year}}</div>
       </div>
-
     </nav>
 
     <!-- The javascript =============================== -->
