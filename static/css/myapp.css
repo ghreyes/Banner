@@ -99,6 +99,8 @@ button.btn-default{
     padding-top: 20px;
     width: 20%;
     position: relative;
+    float:right;
+    margin-right: 30%;
 }
 
 #submit_record__row{
