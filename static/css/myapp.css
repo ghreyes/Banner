@@ -7,7 +7,11 @@
     margin-right:15px;
     float:left;
 }*/
-*, *:after, *:before {border:0; margin:0; padding:0;}
+*, *:after, *:before {
+    border:0;
+    margin:0;
+    padding:0;
+}
 @import url('//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css');
 
 .isa_info, .isa_success, .isa_warning, .isa_error {
@@ -37,7 +41,9 @@ padding:12px;
     font-size:2em;
     vertical-align:middle;
 }
-label, strong {font-weight:bold}
+label, strong {
+    font-weight:bold
+}
 
 input.form_stuff {
     display: inline;
@@ -236,12 +242,12 @@ text-align: center;
 }
 
 /* line 7, ../sass/_main.scss */
-.post_list {
+.post_list{
   padding-top: 10px;
 }
 
 /* line 11, ../sass/_main.scss */
-.post {
+.post{
   border-color: #000000;
   border-style: solid;
   border-width: 1px;
@@ -273,8 +279,7 @@ text-align: center;
     margin:0 auto;
 }
 
-.navbar-how
-{
+.navbar-how {
     position: absolute;
     width: 100%;
     top: 40%;
@@ -282,8 +287,7 @@ text-align: center;
     margin:0 auto;
 }
 
-.navbar-email
-{
+.navbar-email {
     position: absolute;
     width: 100%;
     top: 40%;
@@ -291,8 +295,7 @@ text-align: center;
     margin:0 auto;
 }
 
-.navbar-post
-{
+.navbar-post {
     position: absolute;
     width: 100%;
     top: 40%;
@@ -300,15 +303,13 @@ text-align: center;
     margin:0 auto;
 }
 
-.navbar-charts
-{
+.navbar-charts {
     position: absolute;
     width: 100%;
     top: 40%;
     left: 57%;
     margin:0 auto;
 }
-
 
 .navbar-toggle {
     z-index:3;

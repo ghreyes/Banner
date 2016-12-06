@@ -30,25 +30,27 @@
             <div id="buttons">
                 <div class="button_bar">
                 <!--editing balance info button-->
-                <button v-if="!is_editing_bal && logged_in" id="test" class="btn btn-custom btn-sm" v-on:click="edit_balance_button()" v-bind:class="{'disabled': !logged_in}">
-                {{=icon_add}} Update Balance Info
+                <button v-if="!is_editing_bal && logged_in" id="test" class="btn btn-custom btn-sm" v-on:click="edit_balance_button()"
+                        v-bind:class="{'disabled': !logged_in}">
+                    {{=icon_add}} Update Balance Info
                 </button>
                 <button v-if="is_editing_bal && logged_in" class="btn btn-danger btn-sm" v-on:click="edit_balance_button()">
-                {{=icon_cancel}}Cancel
+                    {{=icon_cancel}}Cancel
                 </button>
 
                 <!--editing costs info button-->
-                <button v-if="!is_editing_costs && logged_in" id="test" class="btn btn-custom btn-sm" v-on:click="edit_costs_button()" v-bind:class="{'disabled': !logged_in}">
-                {{=icon_add}} Update User Costs
+                <button v-if="!is_editing_costs && logged_in" id="test" class="btn btn-custom btn-sm" v-on:click="edit_costs_button()"
+                        v-bind:class="{'disabled': !logged_in}">
+                    {{=icon_add}} Update User Costs
                 </button>
                 <button v-if="is_editing_costs && logged_in" class="btn btn-danger btn-sm" v-on:click="edit_costs_button()">
-                {{=icon_cancel}}Cancel
+                    {{=icon_cancel}}Cancel
                 </button>
 
                 <!--editing statistics info button-->
 
                 <button v-if="is_editing_stats && logged_in" class="btn btn-danger btn-sm" v-on:click="edit_stats_button()">
-                {{=icon_cancel}}Cancel
+                    {{=icon_cancel}}Cancel
                 </button>
                 </div>
             </div>
@@ -152,9 +154,9 @@
 
 
 <div class="average-info">
-        <div class="avgChartDiv" id="avgChartDiv">
-    <canvas id="avgChart" width="350" height="300" style="display:inline"></canvas>
-</div>
+    <div class="avgChartDiv" id="avgChartDiv">
+        <canvas id="avgChart" width="350" height="300" style="display:inline"></canvas>
+    </div>
     <button class="eval-button btn btn-default" type="button" onclick="myFunction()">Evaluate</button>
     <div class="isa_info">
         <i class="fa fa-info-circle"></i>
@@ -242,8 +244,13 @@ function myFunction() {
 window.onload = function() {
     //build chart AFTER ajax .get function is done
     $( document ).ajaxComplete(function(event, xhr, settings) {
-        if (settings.type === "POST" && (settings.data.search("age") > 0)){return;} // Suppress new charts for update_stats
-        else if (settings.url.search("get_user_info") > 0 && edited_stats){edited_stats = false; return; }
+        if (settings.type === "POST" && (settings.data.search("age") > 0)){
+            return;
+        } // Suppress new charts for update_stats
+        else if (settings.url.search("get_user_info") > 0 && edited_stats){
+            edited_stats = false;
+            return;
+        }
 
         // Allows the charts to be properly updated by 'deleting' canvas elements, then re-adding them
         var avgChartcan = document.getElementById("avgChart");

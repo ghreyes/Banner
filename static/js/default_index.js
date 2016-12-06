@@ -1,15 +1,5 @@
-/**
- * Created by gding on 11/9/2016.
- */
-
- /* url variables for the functions
-    var get_user_info_url = "{{=URL('api', 'get_user_info', user_signature=True)}}";
-    var get_average_info_url = "{{=URL('api', 'get_average_info', user_signature=True)}}";
-*/
-
 // Variables for charts/updating
 var curr_person, edited_costs = false, edited_balance = false, edited_stats, delay = 0, firstLoad = true;
-var logg_in;
 
 var app = function () {
     var self = {};
@@ -120,10 +110,6 @@ var app = function () {
             transportation: 0,
             other: 0,
             total: 0,
-
-            avg_bal: 0,
-            avg_spend: 0,
-            avg_income: 0
         },
         methods: {
             edit_balance_button: self.edit_balance_button,
@@ -136,7 +122,6 @@ var app = function () {
             update_stats: self.update_stats,
             update_costs: self.update_costs,
             update_balance: self.update_balance,
-            get_average_info: self.get_average_info
         }
     });
 
