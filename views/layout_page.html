@@ -55,7 +55,6 @@
       <div class="container-fluid">
           {{=response.logo or ''}}
         <ul class = "temp">
-            <a class="navbar-email" href="mailto:someone@example.com?Subject=Hello%20again" target="_top">Send Mail</a>
             <a class="navbar-post" href={{=URL('posts')}}>Comments</a>
             {{if auth.user_id:}}
                 <a class="navbar-charts" href='http://127.0.0.1:8000/Banner/default/chart'>Charts</a>

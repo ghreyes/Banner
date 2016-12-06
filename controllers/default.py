@@ -13,8 +13,8 @@ def index():
     return dict()
 
 def posts():
-    if (auth.user_id == False):
-        redirect(URL('posts'))
+
+
 
     return dict()
 
