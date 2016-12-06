@@ -15,7 +15,9 @@
     var update_balance_url = "{{=URL('api', 'update_balance', user_signature=True)}}";
 </script>
 {{end}}
+
 <br><br><br>
+
 <div class = "outer_bounds">
     <div class="chartsDiv">
         <div class="costChartDiv" id="costChartDiv">
@@ -139,7 +141,6 @@
                             <input class="form_stuff" v-model="gender=person.gender" type="ratio" placeholder="Your gender"/> </input>
                             <span class="help-block"></span>
                         </div>
-
                     </div>
                     <div class="form-group" id="submit_record">
                         <div>
@@ -148,16 +149,22 @@
                     </div>
                 </form>
             </div>
+
         </div>
     </div>
 </div>
 
 
 <div class="average-info">
+    <!-- bar graph comparing average to user data -->
     <div class="avgChartDiv" id="avgChartDiv">
         <canvas id="avgChart" width="350" height="300" style="display:inline"></canvas>
     </div>
+
+    <!-- button to update isa bubbles -->
     <button class="eval-button btn btn-default" type="button" onclick="myFunction()">Evaluate</button>
+
+    <!-- isa bubbles -->
     <div class="isa_info">
         <i class="fa fa-info-circle"></i>
         <span id="rentid"></span>
@@ -182,7 +189,6 @@
          <i class="fa fa-info-circle"></i>
          <span id="totalid"></span>
     </div>
-
 </div>
 
 <html>
@@ -198,6 +204,7 @@ function myFunction() {
     var trans = curr_person.transportation;
     var other = curr_person.other;
     var total = rent + food + util + trans + other;
+
     if (rent < 840) {
         rtext = "You spend less than the average in rent";
     } else {
@@ -228,6 +235,7 @@ function myFunction() {
     } else {
         tottext = "You spend more than the average in total";
     }
+
     document.getElementById("rentid").innerHTML = rtext;
     document.getElementById("foodid").innerHTML = ftext;
     document.getElementById("utilid").innerHTML = utext;
@@ -328,6 +336,7 @@ window.onload = function() {
         var net = income - total;
         var incomeColor;
         var balColor;
+
         //set income to red if deficit and blue otherwise
         if(net < 0){
             incomeColor = 'rgb(255,0,0)';
@@ -337,6 +346,7 @@ window.onload = function() {
             goal = curr_person.goal - (bal+net);
             incomeColor = 'rgb(0,150,0)';
         }
+
         if (edited_balance || edited_costs || firstLoad) {
             var bChart = new Chart(ctx2, {
                 type: 'pie',
@@ -407,5 +417,3 @@ window.onload = function() {
 }
 
 </script>
-
-
