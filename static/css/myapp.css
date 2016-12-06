@@ -335,3 +335,9 @@ text-align: center;
     text-size: 100%;
 }
 
+.M_image
+{
+    float:left;
+    margin-left: 25%;
+}
+
