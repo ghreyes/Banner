@@ -95,6 +95,12 @@ button.btn-default{
     margin-right: 25%;
 }
 
+.post_button_bar {
+    padding-top: 20px;
+    width: 20%;
+    position: relative;
+}
+
 #costChart{
     display: inline;
 }

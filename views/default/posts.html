@@ -13,9 +13,9 @@
 
 <div class="post_main_content">
 
-    <div id="posts" class="display:none ">
+    <div id="posts" class="display:none " style="padding-bottom: 7em">
 
-        <div class="button_bar">
+        <div class="post_button_bar">
             <button v-if="!is_adding_post" class="btn btn-success btn-block" v-on:click="add_post_button()" v-bind:class="{'disabled': !logged_in}">
             {{=icon_add}}Add new post
             </button>
