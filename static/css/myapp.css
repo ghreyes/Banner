@@ -88,10 +88,11 @@ button.btn-default{
 
 .button_bar{
     padding-top: 20px;
-    width: 20%;
+    padding-bottom: 10px;
+    width: 60%;
     position: relative;
     float:right;
-    margin-right: 30%;
+    margin-right: 25%;
 }
 
 #costChart{
@@ -105,7 +106,7 @@ button.btn-default{
 .chartsDiv{
     float:left;
     width:60%;
-    height:600px;
+    height: 450px;
     padding-top:20px;
 }
 
@@ -120,6 +121,7 @@ button.btn-default{
 }
 
 .avgChartDiv{
+    padding-top: 50px;
     padding-right: 15%;
     float: right;
 }

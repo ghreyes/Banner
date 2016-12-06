@@ -16,8 +16,6 @@
 </script>
 {{end}}
 
-<br><br><br>
-
 <div class = "outer_bounds">
     <div class="chartsDiv">
         <div class="costChartDiv" id="costChartDiv">
@@ -158,7 +156,7 @@
 <div class="average-info">
     <!-- bar graph comparing average to user data -->
     <div class="avgChartDiv" id="avgChartDiv">
-        <canvas id="avgChart" width="350" height="300" style="display:inline"></canvas>
+        <canvas id="avgChart" width="500" height="400" style="display:inline"></canvas>
     </div>
 
     <!-- button to update isa bubbles -->
@@ -275,7 +273,7 @@ window.onload = function() {
             avgChartcan.remove();
             balChartcan.remove();
             $(costChartDiv).append('<canvas id="costChart" width="350" height="350" style="display:inline"></canvas>');
-            $(avgChartDiv).append('<canvas id="avgChart" width="350" height="350" style="display:inline"></canvas>');
+            $(avgChartDiv).append('<canvas id="avgChart" width="500" height="400" style="display:inline"></canvas>');
             $(balChartDiv).append('<canvas id="balChart" width="350" height="350" style="display:inline"></canvas>');
         }
         else if (edited_balance && delay <= 2){
