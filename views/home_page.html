@@ -57,9 +57,9 @@
         <ul class = "temp">
             <a class="navbar-post" href={{=URL('posts')}}>Comments</a>
             {{if auth.user_id:}}
-                <a class="navbar-charts" href='https://cmps183-project.appspot.com/Banner/default/chart'>Charts</a>
+                <a class="navbar-charts" href='http://127.0.0.1:8000/Banner/default/chart'>Charts</a>
             {{else:}}
-                <a class="navbar-charts" href='https://cmps183-project.appspot.com/Banner/default/user/login?_next=/Banner/default/chart'>Charts</a>
+                <a class="navbar-charts" href='http://127.0.0.1:8000/Banner/default/user/login?_next=/Banner/default/chart'>Charts</a>
             {{pass}}
         </ul>
       </div>

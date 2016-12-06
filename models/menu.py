@@ -6,7 +6,7 @@
 # ----------------------------------------------------------------------------------------------------------------------
 
 response.logo = A(B(SPAN('Banner')), XML('&trade;&nbsp;'),
-                  _class="navbar-brand", _href="https://cmps183-project.appspot.com/Banner/")
+                  _class="navbar-brand", _href="http://127.0.0.1:8000/Banner")
 response.title = request.application.replace('_', ' ').title()
 response.subtitle = ''
 
