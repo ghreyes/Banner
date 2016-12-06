@@ -17,10 +17,10 @@
         <!-- Your code goes here.  Remember to call $("#vue-div").show() once you get the data for the first time. -->
 
         <div class="button_bar">
-            <button v-if="!is_adding_post" class="btn btn-danger btn-sm" v-on:click="add_post_button()" v-bind:class="{'disabled': !logged_in}">
+            <button v-if="!is_adding_post" class="btn btn-success btn-block" v-on:click="add_post_button()" v-bind:class="{'disabled': !logged_in}">
             {{=icon_add}}Add new post
             </button>
-            <button v-if="is_adding_post" class="btn btn-warning btn-sm" v-on:click="add_post_button()">
+            <button v-if="is_adding_post" class="btn btn-danger btn-block" v-on:click="add_post_button()">
             {{=icon_cancel}}Cancel
             </button>
         </div>
@@ -31,13 +31,14 @@
                 <div class="form-group" id="no_table_content">
                     </br>
                     <div>
+                        What do you want to say?
                         <textarea class="form-control string" id="post_content" v-model="form_content" type="text"> </textarea>
                         <span class="help-block"></span>
                     </div>
                 </div>
                 <div class="form-group" id="submit_record">
                     <div>
-                        <input class="post-button" id="add_post_submit" type="submit" value="Post" v-on:click="add_post_button()"/>
+                        <input class="post-button" id="add_post_submit" type="submit" value="Post comment" v-on:click="add_post_button()"/>
                     </div>
                 </div>
             </form>
@@ -47,28 +48,43 @@
         <!-- Display posts code + edit/delete options -->
         <div class="post-content">
             <div class="post" v-for="post in posts">
-                <p v-if="!(edit_id==post.id)">${post.post_content}</p> <!-- Just display content if not editing-->
+                <span class="label label-warning" style="font-size:15px">${post.username} </span>
+                <p></p>
+                </br>
+                <p v-if="!(edit_id==post.id)" style="font-size:15px">${post.post_content}</p> <!-- Just display content if not editing-->
 
                 <!-- Display textarea and post/cancel buttons if editing-->
                 <div v-if="edit_id==post.id" class="form-group" id="edit">
                     <textarea class="form-control string" id="edit_content" v-model="edit_content=post.post_content" type="text"></textarea>
                     <span class="help-block"></span>
 
-                    <button class="post-edit-button" v-on:click="edit_post_button(0) & edit_post(post.id)" type="submit"> Post </button>
+                    <button class="post-edit-button" v-on:click="edit_post_button(0), edit_post(post.id)" type="submit"> Post </button>
                     <button class="cancel-button" v-on:click="edit_post_button(0)"> Cancel </button>
                 </div>
 
                 </br>
                 </br>
-
                 <!-- Code for name of user, and created on/updated on times. -->
-                <div id="left" style="float: left; width:25%">${post.username}</div>
-                <div id="center" style="float: left; width:50%">Created on: ${post.created_on}</div>
-                <div v-if="post.created_on!=post.updated_on" id="right" style="float: right; width:20%">Updated on: ${post.updated_on}</div>
+                <div class="panel-footer clearfix" style="background: #ffffff;">
+                    <!--<div class="pull-left">-->
+                        <span class="label label-info">Created on: ${post.created_on}</span>
+                        &nbsp;&nbsp;
+                        <span v-if="post.created_on!=post.updated_on" class="label label-danger">Updated on: ${post.updated_on}</span>
+                    <!--</div>-->
+
+                    <div class="pull-right">
+                    <button class="btn btn-danger btn-med">
+                        <i v-if="post.make_edit" class="fa fa-trash-o" v-on:click="delete_post(post.id)"></i>
+                    </button>
+                    <button class="btn btn-info btn-sm>">
+                        <i v-if="post.make_edit" class="fa fa-pencil" v-on:click="edit_post_button(post.id)"></i>
+                    </button>
+                </div>
+                </div>
+
 
                 <!-- Delete and Edit buttons-->
-                <i v-if="post.make_edit" class="fa fa-trash-o" v-on:click="delete_post(post.id)"></i>
-                <i v-if="post.make_edit" class="fa fa-pencil" v-on:click="edit_post_button(post.id)"></i>
+
             </div>
         </div>
 
