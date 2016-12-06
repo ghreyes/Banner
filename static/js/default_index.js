@@ -3,9 +3,7 @@ var curr_person, edited_costs = false, edited_balance = false, edited_stats, del
 
 var app = function () {
     var self = {};
-
     Vue.config.silent = false;
-
 
     self.edit_balance_button = function(){
         if (self.vue.logged_in) {

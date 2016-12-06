@@ -15,16 +15,10 @@ def get_user_name_from_email(email):
         return ' '.join([u.first_name, u.last_name])
 
 def get_posts():
-    """This controller is used to get the posts.  Follow what we did in lecture 10, to ensure
-    that the first time, we get 4 posts max, and each time the "load more" button is pressed,
-    we load at most 4 more posts."""
-    # Implement me!
     start_idx = int(request.vars.start_idx) if request.vars.start_idx is not None else 0
     end_idx = int(request.vars.end_idx) if request.vars.end_idx is not None else 0
-    # We just generate a lot of of data.
     posts = []
     has_more = False
-    user_email = ""
     rows = db().select(db.post.ALL, orderby=~db.post.created_on, limitby=(start_idx, end_idx + 1))
     for i, r in enumerate(rows):
         if i < end_idx - start_idx:
