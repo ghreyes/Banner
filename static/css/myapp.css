@@ -329,3 +329,7 @@ text-align: center;
     text-size: 100%;
 }
 
+.lefty{
+    float:left;
+    margin-right: 70%;
+}
