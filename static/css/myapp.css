@@ -207,12 +207,22 @@ a{
 }
 
 .mid{
-  text-align: center;
+    color: black;
+    text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
+    position: absolute;
+    top: 25px;
+    width: 100%;
+    text-align: center;
     font-size: 500%;
 }
 
 .line{
-text-align: center;
+    color: black;
+    text-shadow: -2px 0 white, 0 2px white, 2px 0 white, 0 -2px white;
+    position:absolute;
+    top: 125px;
+    width: 100%;
+    text-align: center;
     font-size: 200%;
 }
 
@@ -267,7 +277,7 @@ text-align: center;
     position: absolute;
     width: 100%;
     top: 40%;
-    left: 43%;
+    left: 15%;
     margin:0 auto;
 }
 
@@ -275,7 +285,7 @@ text-align: center;
     position: absolute;
     width: 100%;
     top: 40%;
-    left: 54.5%;
+    left: 28%;
     margin:0 auto;
 }
 
@@ -308,4 +318,8 @@ text-align: center;
 {
     float:left;
     margin-left: 25%;
+}
+
+.title-image{
+    position: relative;
 }
